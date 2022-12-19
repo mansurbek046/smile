@@ -1,13 +1,15 @@
 let root = document.querySelector(".root");
-let type = 0;
 
-let dbversion = Number(localStorage.getItem("dbversion"))+1
+let dbversion = Number(localStorage.getItem("dbversion")) + 1
 
-const idb = window.indexedDB.open("tabassum_malumotlari", dbversion);
+// const idb = window.indexedDB.open("tabassum_malumotlari", dbversion);
+
+
+
 
 localStorage.setItem("dbversion", dbversion);
 
-const createDictItem = (text)=> {
+const createDictItem = (text) => {
   let row = document.createElement("div");
   row.setAttribute("class", "row py-2 window mt-2 mx-auto")
   let col = document.createElement("div");
@@ -28,42 +30,51 @@ const createDictItem = (text)=> {
   delBtn.append(delIcon);
   editBtn.append(editIcon);
   buttons.append(delBtn, editBtn);
-  text ? col.innerHTML = text: col.append(input);
+  text ? col.innerHTML = text : col.append(input);
   row.append(col, buttons);
   root.append(row);
-
 }
 
-idb.onsuccess = ()=> {
-  let res = idb.result;
-  let names = res.objectStoreNames
-  for (var i = 0; i < names.length; i++) {
-    name = names[i];
-    createDictItem(name)
+// idb.onsuccess = () => {
+//   let res = idb.result;
+//   let names = res.objectStoreNames
+//   for (var i = 0; i < names.length; i++) {
+//     name = names[i];
+//     createDictItem(name)
+//   }
+// }
+
+function eventSave() {
+  document.body.addEventListener("click", () => {
+    let name_input = document.querySelector('.name-input');
+    if (name_input.value) {
+      createDictItem(name_input.value);
+      plus_btn.classList.remove("d-none");
+      name_input.parentNode.parentNode.remove();
+      p(1234);
+    }
+  });
+}
+
+function p(text) {
+  let dbversion = Number(localStorage.getItem("dbversion")) + 1
+  const idb = window.indexedDB.open("tabassum_malumotlari", dbversion);
+  idb.onupgradeneeded = () => {
+    let res = idb.result;
+    res.createObjectStore(text, {
+      autoIncrement: true
+    });
   }
 }
 
 
 let plus_btn = document.querySelector(".plus-btn");
 
-plus_btn.addEventListener("click", ()=> {
+plus_btn.addEventListener("click", () => {
   createDictItem();
   plus_btn.classList.add("d-none");
-  type = 1;
+  eventSave();
 });
 
 
-document.body.addEventListener("click", ()=> {
-  if (document.querySelector(".name-input").value) {
-    let dbversion = localStorage.getItem("dbversion");
-    const db = window.indexedDB.open("tabassum_malumotlari", dbversion);
-    db.onupgradeneeded = ()=> {
-      let res = db.result;
-      res.createObjectStore(document.querySelector(".name-input").value, {
-        autoIncrement: true
-      })
-    }
-    localStorage.setItem("dbversion", dbversion);
-    createDictItem(document.querySelector(".name-input").value)
-  }
-});
+
