@@ -1,0 +1,71 @@
+.row {
+  margin: 0 !important;
+}
+
+body {
+  background-image: url("../files/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+
+.window {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  width: 100%;
+}
+
+.avatar {
+  background-image: url("../files/smile.jpg");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 96px!important;
+  height: 96px!important;
+  border-radius: 50%;
+  position: absolute;
+  top: 20px;
+}
+
+.input,
+button {
+  display: block;
+  width: 95%!important;
+  margin: auto!important;
+  outline: none;
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 8px 0 32px 0 rgba(0, 0, 0, 0.37);
+  font-size: 20px!important;
+  padding: 3px 15px;
+  font-family: sans-serif;
+  font-weight: 700!important;
+  border-radius: 20px!important;
+  color: white;
+}
+.input:hover{
+  border-color: aqua;
+  color: aqua;
+}
+
+label {
+  margin-top: 20px;
+}
+
+button {
+  background-color: white;
+  color: black;
+  margin: 25px auto!important;
+  text-align: center;
+  transition: .2s;
+}
+button:hover{
+  background: none;
+  color: #fff;
+}
