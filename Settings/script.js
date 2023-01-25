@@ -1,59 +1,80 @@
-let data = {
-    speaker: "male",
-    language: "uz-uz",
-    background: "bg.jpg",
-    font: "sans-serif",
+let fonts = `Sans-Serif
+Audiowide
+BakbakOne
+Creepster
+DynaPuff
+Kavoon
+Pacifico
+RubikGemstones
+RubikVinyl
+TwinkleStar
+Aladin
+AlmendraDisplay
+AlmendraSC
+Bonbon
+EagleLake
+Meddon
+NextDoor
+Orbitron
+RussoOne
+Sofia`.split("\n").sort();
+
+const dropdown = document.querySelector(".dropdown-menu");
+let option = "";
+fonts.forEach((font)=> {
+  option += `<li class="dropdown-item text-truncate" id="${font}" onclick="setFontValue(this)" style="font-family: '${font}'!important">${font}</li>\n`;
+  dropdown.innerHTML = option;
+})
+
+let def_config = {
+  speaker: "male",
+  language: "uz",
+  font: "Sans-Serif",
 };
 
+let config = JSON.parse(localStorage.getItem("__smile_config"));
+config = config == null ? def_config: config;
 
-const idb = window.indexedDB.open("tabbmassum_malumotlari", 2);
+(function() {
+  document.querySelectorAll("select").forEach((e)=> {
+    e.value = config[e.name]
+  })
+  localStorage.setItem("__smile_config", JSON.stringify(config));
+})();
 
-idb.onsuccess = ()=> {
-    let res = idb.result;
-    if (res.objectStoreNames.contains("sozlamalar")) {
-        let tx = res.transaction("sozlamalar", "readonly");
-        let store = tx.objectStore("sozlamalar");
-        data = store.get(0);
-    }
-}
-
-document.querySelectorAll("select").forEach((e)=> {
-    e.value = data[e.name]
+const input = document.querySelector('#background')
+input.addEventListener("input", ()=> {
+  var file = input.files[0]
+  const fr = new FileReader();
+  fr.readAsDataURL(file);
+  fr.addEventListener("load", ()=> {
+    const url = fr.result;
+    localStorage.setItem("__smile_background", url);
+    window.location.reload();
+  })
 })
-
-
-
-
-const db = window.indexedDB.open("tabassum_malumotlari",
-    1);
-
-db.onupgradeneeded = () => {
-    let res = db.result;
-    res.createObjectStore("sozlamalar", {
-        autoIncrement: true
-    });
-}
-
-
-document.querySelector('input').addEventListener("change", (e)=> {
-    data[e.name] = e.value;
-})
-document.querySelectorAll('select').forEach((d)=> {
-    d.addEventListener("change", () => {
-        document.querySelectorAll('select').forEach((e) => {
-            if (e.value != '') {
-                data[e.name] = e.value;
-            }
-        })
-        db.onsuccess = () => {
-            let res = db.result;
-            if (res.objectStoreNames.contains("sozlamalar")) {
-                let tx = res.transaction("sozlamalar", "readwrite");
-                let store = tx.objectStore("sozlamalar");
-                store.put(data, 0);
-            } else {
-                alert('Xato: Omborda jadval topilmadi. (Settings/script.js/:35)');
-            }
-        }
+document.querySelectorAll('select').forEach((select)=> {
+  select.addEventListener("change", () => {
+    document.querySelectorAll('select').forEach((select) => {
+      if (select.value != '') {
+        config[select.name] = select.value;
+        localStorage.setItem("__smile_config", JSON.stringify(config));
+        setFont();
+        setLang();
+      }
     })
+  })
 })
+
+const setFontValue = (li)=> {
+  document.querySelectorAll(".dropdown-menu .active").forEach((active) => active.classList.remove("active"));
+  config["font"] = li.id;
+  localStorage.setItem("__smile_config", JSON.stringify(config));
+  li.classList.add("active");
+  setFont();
+}
+
+
+const closePage = ()=> {
+  close(document);
+}

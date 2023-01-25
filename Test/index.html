@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="uz-UZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
+  <title>Test</title>
+  <link rel="stylesheet" href="../fontawesome/css/all.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
+</head>
+<body>
+  <nav class="settings-navbar">
+    <a style="color: rgba(255,255,255,.9)" onclick="closePage(this)">
+      <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
+    </a>
+    <div class="col-5">
+      <select id="select-dict" class="select-dict">
+
+      </select>
+    </div>
+    <p class="word-count">
+      0
+    </p>
+  </nav>
+  <div class="row root d-flex justify-content-center">
+    <div class="window mt-4">
+      <div class="word-box">
+        <p class="word">
+
+        </p>
+      </div>
+      <div class="answer-box">
+        <input type="text" class="answer-input" />
+        <p class="question">
+          ?
+        </p>
+      </div>
+      <div class="voice-box w-100 d-flex justify-content-center align-items-center mb-2">
+        <button id="listening">
+          <i class="fa-solid fa-microphone"></i> 
+        </button>
+        <button id="speaking">
+          <i class="fa-solid fa-volume-high"></i> 
+        </button>
+      </div>
+    </div>
+  </div>
+  <script src="../main.js" type="text/javascript" charset="utf-8"></script>
+  <script src="script.js"></script>
+</body>
+</html>

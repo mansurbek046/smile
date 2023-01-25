@@ -7,6 +7,11 @@
   height: 100vh;
   margin: 0!important;
   background: none;
+  width: 300px!important;
+  height: 440px!important;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 body {
   background-image: url("./files/bg.jpg");
@@ -15,6 +20,9 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
   height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .window {
@@ -26,7 +34,7 @@ body {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
   width: 130px;
   padding: 10px;
-  font-family: sans-serif;
+  font-family: 'Sans-Serif';
   font-weight: 800;
   color: rgba(255, 255, 255, 0.8);
   font-size: 20px;

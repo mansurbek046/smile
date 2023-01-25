@@ -13,8 +13,8 @@
   <div class="row d-flex justify-content-center align-items-center pt-5">
     <div class="mt-4 mb-5 col-md-8 col-10 window">
       <form class="pt-5">
-        <label for="firstName" class="floating-label text-light">Ismingiz:</label>
-        <input id="firstName" type="text" class="input" name="name">
+        <label for="name" class="floating-label text-light">Ismingiz:</label>
+        <input id="name" type="text" class="input" name="name">
         <label for="surname" class="floating-label text-light">Familiyangiz:</label>
         <input id="surname" type="text" class="input" name="surname">
         <label for="date_of_birth" class="floating-label text-light">Tug'ilgan sanangiz(kun/oy/yil):</label>
@@ -31,7 +31,7 @@
         </select>
         <label for="mother_tongue" class="floating-label text-light">Ona tilingizni tanlang:</label>
         <select id="mother_tongue" class="input" name="mother_tongue">
-          <option value="uz" selected>Uzbek - o‘zbek</option>
+          <option value="uz">Uzbek - o‘zbek</option>
           <option value="af">Afrikaans</option>
           <option value="sq">Albanian - shqip</option>
           <option value="am">Amharic - አማርኛ</option>
@@ -175,11 +175,11 @@
           <option value="zu">Zulu - isiZulu</option>
         </select>
       </form>
-      <button>Boshlash</button>
+      <button id="submit">Boshlash</button>
     </div>
-    <div class="avatar"></div>
+    <label class="avatar" for="photo"></label>
+    <input type="file" class="d-none" accept="image/*" id="photo">
   </div>
-  <script src="../db.js" type="text/javascript" charset="utf-8"></script>
   <script src="./script.js"></script>
 </body>
 

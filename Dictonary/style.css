@@ -1,107 +1,157 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 .row {
-    margin: 0;
-    background: none;
-    font-size: 18px;
-    font-weight: 200;
-    color: rgba(255,255,255,.9);
+  margin: 0!important;
+  border-collapse: collapse;
+  background: none;
+  font-size: 18px;
+  font-weight: 200;
+  color: rgba(255,255,255,.9);
 }
 body {
-    background-image: url("../files/bg.jpg");
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center center;
-    background-repeat: no-repeat;
-    height: 100vh;
+  background: url("../files/bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 100vh;
 }
 .window {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(10px);
-    font-family: sans-serif;
-    font-weight: 200;
-    width: 95%;
-    border-radius: 15px;
-    font-size: 22px;
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    transition: .2s;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(10px);
+  font-family: sans-serif;
+  font-weight: 200;
+  width: 95%;
+  border-radius: 15px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: .2s;
 }
-.window:hover{
-    background-color: rgba(255,255,255,.7);
-    color: black;
+.window:hover {
+  background-color: rgba(255,255,255,.7);
+  color: black;
 }
-.window:hover .delete, .window:hover .edit{
-    color: black;
-    border-color: black;
+.window:hover * {
+  color: black;
+  border-color: black;
+}
+
+.window-2 {
+  width: 100%!important;
+  border-radius: 0!important;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 10px 0!important;
 }
 
 .settings-navbar {
-    background-color: rgba(0,0,0,.7);
-    color: rgba(255,255,255,1);
-    padding: 10px;
-    font-size: 25px;
-    position: sticky;
-    top: 0;
-    z-index: 3;
+  background-color: rgba(0,0,0,.7);
+  color: rgba(255,255,255,1);
+  padding: 5px;
+  font-size: 25px;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: rgba(255,255,255,.9);
+}
+.words-navbar p {
+  margin: 0!important;
+  font-size: 20px!important;
+  font-weight: 700;
+  background-color: white;
+  color: black;
+  padding: 0px 10px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.edit, .delete {
-    outline: none;
-    transition: .2s;
-    background: rgba(255,255,255,.18);
-    border: 1px solid rgba(255,255,255,.36);
-    display: inline-block;
-    border-radius: 50%;
-    font-size: 1.1rem;
-    width: 2.3rem;
-    height: 2.3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-}
-.delete:active{
-    background-color: red;
-}
-.edit:active{
-    background-color: limegreen;
-}
-.plus-btn{
-    outline: none;
-    transition: .2s;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: none;
-    background-color: white;
-    color: rgba(0,0,0,.9);
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    font-size: 30px;
-    position: fixed;
-    bottom: 1rem;
+.settings-navbar .page-name {
+  margin: 0!important;
+  margin-right: 35vw!important;
 }
 
-.plus-btn:hover{
-    background: none;
-    color: white;
+.settings-navbar .search {
+  display: inline-block;
+  width: 80%!important;
+  margin: 0;
+  padding: 0;
+  border: none;
+  color: black;
+  border-radius: 0!important;
+}
+.settings-navbar .search-box {
+  padding: 2px 5px!important;
+  width: 55%!important;
+  margin: 3px 0!important;
+}
+.edit, .delete, .save, .speak, .add, .all, #save {
+  outline: none;
+  transition: .2s;
+  background: rgba(255,255,255,.18);
+  border: 1px solid rgba(255,255,255,.36);
+  display: inline-block;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.delete:active {
+  background-color: red;
+}
+.edit:active {
+  background-color: limegreen;
+}
+.save:active, .speak:active, .add:active, #save:active {
+  background-color: white;
+}
+.plus-btn {
+  outline: none;
+  transition: .2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  background-color: white;
+  color: rgba(0,0,0,.9);
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  font-size: 30px;
+  position: fixed;
+  bottom: 1rem;
 }
 
-.root{
-    padding-bottom: 4rem;
-    display: flex;
-    flex-direction: column;
+.plus-btn:hover {
+  background: none;
+  color: white;
 }
 
-input {
+.root {
+  padding-bottom: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+input, .name-select {
   width: 100%!important;
   outline: none;
   background: rgba(255, 255, 255, 0.18);
@@ -113,11 +163,62 @@ input {
   border-radius: 20px!important;
   color: white;
 }
-input:hover{
+input:hover {
   border-color: black;
   color: black;
   box-shadow: none;
 }
-input::placeholder{
-    color: rgba(0,0,0,.4);
+input::placeholder {
+  color: rgba(0,0,0,.4);
+}
+
+.window-2 input {
+  border: none!important;
+  border-radius: 0!important;
+  padding: 0!important;
+  font-size: 20px!important;
+  background: none!important;
+}
+
+.window-2 .buttons, .window-2 .col-7 {
+  display: none!important;
+}
+.window-2:hover .buttons, .window-2:hover .col-7 {
+  display: flex!important;
+}
+
+.modal-content {
+  background: none!important;
+  width: 300px!important;
+  height: 200px!important;
+}
+
+.modal-content .window {
+  background-color: rgba(255,255,255,.7)!important;
+}
+
+.modal-content .window * {
+  color: black;
+  border-color: black!important;
+}
+
+.all {
+  border-radius: 20px!important;
+  background-color: rgba(0,0,0,.9)!important;
+  color: rgba(255,255,255,.6)!important;
+}
+
+.select-label {
+  padding: 0!important;
+  font-weight: 700!important;
+  font-size: 18px!important;
+  margin-top: 15px!important;
+}
+.select-label:first-child {
+  margin-top: 0!important;
+  font-size: 18px!important;
+}
+
+.dict_name {
+  width: 200px!important;
 }

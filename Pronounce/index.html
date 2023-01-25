@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dictonary</title>
+  <link rel="stylesheet" href="../fontawesome/css/all.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
+
+</head>
+<body>
+  <nav class="settings-navbar">
+    <a style="color: rgba(255,255,255,.9)" onclick="closePage()">
+      <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
+    </a>
+    <p>
+      <item id="4"></item>
+    </p>
+  </nav>
+  <div class="row mt-2 d-flex justify-content-center">
+    <textarea rows="7" class="window-hover mb-5" id="textInput"></textarea>
+    <div class="window">
+      <label for="pitch">
+        <item id="13"></item>
+        <span id="pitch-view">1</span></label>
+      <input type="range" class="form-range" min="0.5" max="2" step="0.1" value="1" id="pitch">
+
+      <label for="rate">
+        <item id="14"></item>
+        <span id="rate-view">1</span></label>
+      <input type="range" class="form-range" min="0.5" max="2" step="0.1" value="1" id="rate">
+
+      <div class="fdr">
+        <select id="voiceSelect" class="input">
+        </select>
+
+        <button id="speak">
+          <item id="15"></item>
+          <i class="ms-1 fas fa-play" aria-hidden="true"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <script src="../bootstrap/js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="../main.js" type="text/javascript" charset="utf-8"></script>
+  <script src="script.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

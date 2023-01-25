@@ -22,15 +22,15 @@ body {
 }
 
 .avatar {
-  background-image: url("../files/smile.jpg");
+  background-image: url('../files/smile.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  width: 96px!important;
-  height: 96px!important;
+  width: 85px!important;
+  height: 85px!important;
   border-radius: 50%;
   position: absolute;
-  top: 20px;
+  top: 24px;
 }
 
 .input,
@@ -63,7 +63,6 @@ button {
   color: black;
   margin: 25px auto!important;
   text-align: center;
-  transition: .2s;
 }
 button:hover{
   background: none;

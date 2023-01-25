@@ -23,12 +23,14 @@ body {
     border: 1px solid rgba(255, 255, 255, 0.18);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(10px);
-    font-family: sans-serif;
+    font-family: 'Sans-Serif';
     font-weight: 200;
     color: rgba(255, 255, 255, 0.8);
+    border-left: none!important;
+    border-right: none!important;
 }
 
-select {
+.dropdown-toggle, select {
     display: block;
     width: 95%!important;
     margin: auto!important;
@@ -43,7 +45,7 @@ select {
     border-radius: 20px!important;
     color: white;
 }
-select:hover {
+.dropdown-toggle:hover, select:hover {
     border-color: aqua;
     color: aqua;
 }
@@ -72,9 +74,42 @@ select:hover {
 .settings-navbar{
     background-color: rgba(0,0,0,.7);
     color: rgba(255,255,255,1);
-    padding: 10px;
-    font-size: 30px;
+    padding: 5px;
+    font-size: 25px;
     position: sticky;
     top: 0;
     z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 10px;
+    padding-right: 33vw;
+    color: rgba(255,255,255,.9);
 }
+.settings-navbar p{
+  margin: 0!important;
+}
+
+.dropdown-menu{
+  max-height: 75vh!important;
+  overflow: auto!important;
+}
+
+.active{
+  background-color: aqua!important;
+  color: black!important;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 40px!important;
+  font-weight: 700;
+  color: gray;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
