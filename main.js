@@ -4,21 +4,16 @@ if (url != null) {
   body.style.backgroundImage = `url(${url})`;
 }
 
-const setFont = ()=> {
+const setFont = () => {
   let font = JSON.parse(localStorage.getItem("__smile_config"));
-  font = font != null ? font.font: "Sans-Serif";
-  document.querySelectorAll("*").forEach((tag)=> {
+  font = font != null ? font.font : "Sans-Serif";
+  document.querySelectorAll("*").forEach((tag) => {
     if (tag.tagName != "I" && tag.tagName != "LI") {
       tag.style.fontFamily = `'${font}'`;
     }
   })
 }
 setFont();
-
-const openIt = (e)=> {
-  open(e);
-}
-
 
 //for multiple languages
 
@@ -27,18 +22,18 @@ const interface_lang = {
   en: ["Test", "Dictionaries", "Translate", "Pronounce", "Grammar", "Settings", "No words found in dictionary 20230119smile.", "No dictionary found! <br> To create a dictionary, go back to the Main Menu and go to the \"Dictionaries\" section. ", "Deleting the dictionary!", "Search...", "Deleting the word 20230119smile!", "Copied", "Sound balance", "Sound speed", "Listen", "Close", "Speaker", "Male", "Female", "Language", "Background", "Upload", "Font", "Choose", "No network connection!", "Name of dictionary...", "First language", "Second language"]
 }
 
-const setLang = ()=> {
+const setLang = () => {
   const config = JSON.parse(localStorage.getItem("__smile_config"));
-  const lang = config != null ? config.language: "uz";
+  const lang = config != null ? config.language : "uz";
   const id18 = document.getElementById("18");
   const id19 = document.getElementById("19");
-  id18?id18.innerHTML = interface_lang[lang][17]: null;
-  id19?id19.innerHTML = interface_lang[lang][18]: null;
+  id18 ? id18.innerHTML = interface_lang[lang][17] : null;
+  id19 ? id19.innerHTML = interface_lang[lang][18] : null;
   const items = document.querySelectorAll("item");
   localStorage.setItem("__smile_language",
     JSON.stringify(interface_lang[lang]));
-  items.forEach((item)=> {
-    item.innerHTML = interface_lang[lang][item.id-1];
+  items.forEach((item) => {
+    item.innerHTML = interface_lang[lang][item.id - 1];
   })
 }
 setLang();

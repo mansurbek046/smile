@@ -73,8 +73,3 @@ const setFontValue = (li)=> {
   li.classList.add("active");
   setFont();
 }
-
-
-const closePage = ()=> {
-  close(document);
-}

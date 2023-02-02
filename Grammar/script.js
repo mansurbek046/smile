@@ -4,6 +4,14 @@ let textarea = document.querySelector(".window textarea");
 let ibtn = document.querySelector(".check div i");
 let show_rule_box = document.querySelector(".show_rule");
 
+let old_text = localStorage.getItem("__smile_grammar_old_text");
+
+textarea.innerHTML = old_text ? old_text: "";
+textarea.addEventListener("input", ()=> {
+  localStorage.setItem("__smile_grammar_old_text", textarea.value);
+});
+
+
 const languages = [{
   "name": "Arabic",
   "code": "ar",
@@ -315,7 +323,7 @@ languages.forEach((lt) => {
   select.append(option);
 })
 
-const lang=JSON.parse(localStorage.getItem("__smile_language"));
+const lang = JSON.parse(localStorage.getItem("__smile_language"));
 
 //Listen command
 let play = true;
@@ -337,7 +345,8 @@ ibtn.addEventListener("click", ()=> {
 const checkSentences = () => {
   loader.classList.remove("d-none");
   const lang = document.querySelector('#text-language').value;
-  const text = document.querySelector('#full-text').value.replace(/(\r\n|\n|\r)/gm, " ");
+  const text = document.querySelector('#full-text').value.replace(/(\r\n|\n|\r)/gm,
+    " ");
   const encodedParams = new URLSearchParams();
   encodedParams.append("language",
     lang);
@@ -398,11 +407,6 @@ const viewContent = (res_txt, user_txt) => {
   ibtn.classList.remove("fa-play");
   ibtn.classList.add("fa-edit");
 }
-
-/*
-my nam is steve, i from uzbekistan, im happy so and im feeli good
-*/
-
 
 window.setInterval(function() {
   let text = loader.textContent;
@@ -482,6 +486,71 @@ input.addEventListener("input", ()=> {
   }
 })
 
-const closePage = ()=> {
-  close(document);
-}
+const rule = document.querySelector(".rule");
+rule.addEventListener("dblclick", ()=> {
+  const text = rule.textContent;
+  rule.innerHTML = "...";
+  if (window.navigator.onLine) {
+    let body = JSON.stringify({
+      texts: [text],
+      tls: ["uz"],
+      sl: "en"
+    })
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': 'd8d30974d7msh24bcdbb92bb7ba2p19685ajsn1daaec9e691e',
+        'X-RapidAPI-Host': 'ai-translate.p.rapidapi.com'
+      },
+      body: body
+    };
+    fetch('https://ai-translate.p.rapidapi.com/translates',
+      options)
+    .then(response => response.json())
+    .then(response => {
+      rule.innerHTML = response[0].texts;
+      loader.classList.add("d-none");
+    })
+    .catch(err => {
+      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+    });
+  } else {
+    alert(lang[24]);
+  }
+})
+
+const message = document.querySelector(".message");
+message.addEventListener("dblclick", ()=> {
+  const text = message.textContent;
+  message.innerHTML = "...";
+  if (window.navigator.onLine) {
+    let body = JSON.stringify({
+      texts: [text],
+      tls: ["uz"],
+      sl: "en"
+    })
+    const options = {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'X-RapidAPI-Key': 'd8d30974d7msh24bcdbb92bb7ba2p19685ajsn1daaec9e691e',
+        'X-RapidAPI-Host': 'ai-translate.p.rapidapi.com'
+      },
+      body: body
+    };
+    fetch('https://ai-translate.p.rapidapi.com/translates',
+      options)
+    .then(response => response.json())
+    .then(response => {
+      message.innerHTML = response[0].texts;
+      loader.classList.add("d-none");
+    })
+    .catch(err => {
+      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+    });
+  } else {
+    alert(lang[24]);
+  }
+})
+

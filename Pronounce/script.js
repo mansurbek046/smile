@@ -78,7 +78,3 @@ function getVoices() {
   voiceSelect.selectedIndex = 0;
 }
 
-
-const closePage = ()=> {
-  close(document);
-}

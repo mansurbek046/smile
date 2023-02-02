@@ -12,7 +12,7 @@
 </head>
 <body>
   <nav class="settings-navbar">
-    <a style="color: rgba(255,255,255,.9)" onclick="closePage(this)">
+    <a  href="javascript:history.back()">
       <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
     <div class="col-5">
@@ -24,7 +24,7 @@
       0
     </p>
   </nav>
-  <div class="row root d-flex justify-content-center">
+  <div class="row root d-flex justify-content-center container">
     <div class="window mt-4">
       <div class="word-box">
         <p class="word">
@@ -32,19 +32,26 @@
         </p>
       </div>
       <div class="answer-box">
-        <input type="text" class="answer-input" />
+        <input type="text" class="answer-input" disabled/>
         <p class="question">
           ?
         </p>
       </div>
-      <div class="voice-box w-100 d-flex justify-content-center align-items-center mb-2">
+      <div class="voice-box get-word-box d-flex justify-content-center align-items-center mb-2 w-100">
         <button id="listening">
-          <i class="fa-solid fa-microphone"></i> 
+          <i class="fa-solid fa-microphone"></i>
         </button>
         <button id="speaking">
-          <i class="fa-solid fa-volume-high"></i> 
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+        <button id="left-side" onclick="left(this)" class="on">
+          <i class="fa-solid fa-align-right"></i>
+        </button>
+        <button id="right-side" onclick="right(this)" class="on">
+          <i class="fa-solid fa-align-left"></i>
         </button>
       </div>
+
     </div>
   </div>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>

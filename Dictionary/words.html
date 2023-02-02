@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +10,11 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
-
 </head>
+
 <body>
   <nav class="settings-navbar words-navbar">
-    <a style="color: rgba(255,255,255,.9)" onclick="closePage()">
+    <a href="javascript:history.back()">
       <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
     <p class="search-box">
@@ -21,10 +22,8 @@
       <i class="fa-solid fa-magnifying-glass"></i>
     </p>
     <p class="word-count">
-
     </p>
   </nav>
-
   <!-- Modal -->
   <div class="modal fade" id="addword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
     <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
@@ -47,17 +46,33 @@
       </div>
     </div>
   </div>
-  <div class="root mb-5 pb-5">
-
+  <!-- Modal2 -->
+  <div class="modal fade" id="selectdict" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
+    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+      <div class="modal-content">
+        <div class="modal-body window row w-100">
+          <select class="dict">
+          </select>
+          <div class="unite" data-bs-dismiss="modal">
+            <img src="../files/unite.png" />
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="row d-flex justify-content-center">
+  <div class="root mb-5 pb-5 pt-0">
+  </div>
+  <div class="row footer">
     <button class="plus-btn" data-bs-toggle="modal" data-bs-target="#addword" onclick="plus()">
       <i class="fa-solid fa-plus"></i>
     </button>
+    <button class="unite-dict" data-bs-toggle="modal" data-bs-target="#selectdict">
+      <img src="../files/unite.png" />
+    </button>
   </div>
-
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>
   <script src="words.js" type="text/javascript" charset="utf-8"></script>
 </body>
+
 </html>

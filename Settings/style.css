@@ -11,6 +11,7 @@
     color: rgba(255,255,255,.8);
 }
 body {
+  background-color: black;
     background-image: url("../files/bg.jpg");
     background-size: cover;
     background-attachment: fixed;
@@ -113,3 +114,10 @@ footer{
   align-items: center;
 }
 
+a {
+  color: rgba(255, 255, 255, .9);
+}
+
+a:active {
+  color: aqua;
+}

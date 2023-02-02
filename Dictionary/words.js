@@ -52,7 +52,7 @@ const createDictItem = (word, word2) => {
 }
 
 let opened_dict_name = localStorage.getItem("__smile_dict_opened");
-const opened_dict = JSON.parse(localStorage.getItem(`__smile_${opened_dict_name}_dict`));
+let opened_dict = JSON.parse(localStorage.getItem(`__smile_${opened_dict_name}_dict`));
 const first_language = opened_dict.lang.first.split("/");
 const second_language = opened_dict.lang.second.split("/");
 
@@ -60,8 +60,8 @@ getVoices();
 window.setTimeout(function() {
   getVoices();
   window.setTimeout(function() {
-      check_disable();
-    },
+    check_disable();
+  },
     100);
 }, 1000);
 let voice = false;
@@ -217,6 +217,32 @@ const disable = () => {
   })
 }
 
+let select = document.querySelector(".dict");
+let names = Object.keys(localStorage).sort().reverse();
+for (let name of names) {
+  name = name.split("_").reverse();
+  if (name[0] == "dict" && name[1] != opened_dict_name) {
+    let option = document.createElement("option");
+    option.setAttribute("value", name[1]);
+    option.innerHTML = name[1];
+    select.append(option);
+  }
+}
+
+document.querySelector(".unite").addEventListener("click", ()=> {
+  const target_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`)).dict;
+
+  if (Object.entries(target_dict)[0] != undefined) {
+    opened_dict.dict = Object.assign(target_dict, opened_dict.dict);
+    localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
+    downWriter();
+  }
+})
+
+
+
+
 const closePage = () => {
   close(document);
+  open("./index.html");
 }

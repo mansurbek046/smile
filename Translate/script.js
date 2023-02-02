@@ -498,4 +498,5 @@ document.querySelector(".replace").addEventListener("click", ()=> {
 
 const closePage = ()=> {
   close(document);
+  open("../index.html");
 }

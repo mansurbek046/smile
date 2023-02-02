@@ -1,6 +1,15 @@
 //speechSynthesis
 const synth = window.speechSynthesis;
 
+//interface language
+const lang = JSON.parse(localStorage.getItem("__smile_language"));
+
+//page close
+const closePage = () => {
+  close(document);
+  open("../index.html");
+}
+
 //dictionaries
 let select = document.getElementById("select-dict");
 let names = Object.keys(localStorage).sort().reverse();
@@ -20,6 +29,12 @@ const listenBtn = document.getElementById("listening");
 let listen = false;
 let speak = false;
 
+let opened_dict;
+let dict;
+let first_language;
+let second_language;
+
+
 //alert about no dictionary
 if (select.value == "") {
   document.querySelector(".root").innerHTML = `
@@ -27,13 +42,13 @@ if (select.value == "") {
   ${lang[7]}
   </div>
   `
+}else{
+  opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`))
+  dict = opened_dict.dict;
+  first_language = opened_dict.lang.first.split("/")[1];
+  second_language = opened_dict.lang.second.split("/")[1];
 }
 
-const opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`))
-const dict = opened_dict.dict;
-
-const first_language = opened_dict.lang.first.split("/")[1];
-const second_language = opened_dict.lang.second.split("/")[1];
 let choosed_language;
 
 //speak voices
@@ -59,14 +74,18 @@ const checkLang = () => {
 
 //listen
 listenBtn.addEventListener("click", () => {
-  if (listen) {
-    listenBtn.classList.remove("on");
-    listen = false;
-    start();
+  if (window.navigator.onLine) {
+    if (listen) {
+      listenBtn.classList.remove("on");
+      listen = false;
+      start();
+    } else {
+      listen = true;
+      listenBtn.classList.add("on");
+      start();
+    }
   } else {
-    listen = true;
-    listenBtn.classList.add("on");
-    start();
+    alert(lang[24])
   }
 })
 
@@ -88,6 +107,20 @@ const speak_word = (word) => {
   }
 }
 
+//It was write for speaktest
+const speaktest = (word) => {
+  if (synth.speaking) {
+    console.error('Already speaking ...')
+    return;
+  }
+  let speakText = new SpeechSynthesisUtterance(word);
+  speakText.onend = e => {}
+  speakText.onerror = e => {
+    console.error(e)
+  }
+  synth.speak(speakText);
+}
+
 speakBtn.addEventListener("click", () => {
   if (!speak) {
     speakBtn.classList.add("on");
@@ -98,20 +131,46 @@ speakBtn.addEventListener("click", () => {
   }
 })
 
-//interface language
-const lang = JSON.parse(localStorage.getItem("__smile_language"));
-
 //test containers
 let count = -1;
 let note;
 let side2;
+let another_side;
 let btn = document.querySelector(".question")
 
 //reselect event
 select.addEventListener("input", () => {
+  let alertbox = document.querySelector(".alert");
+  alertbox ? alertbox.remove() : null;
+  opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`));
+  dict = opened_dict.dict;
+  first_language = opened_dict.lang.first.split("/")[1];
+  second_language = opened_dict.lang.second.split("/")[1];
   count = -1;
   start();
 })
+
+//check sides
+let leftside = true;
+let rightside = true;
+const left = (btn) => {
+  if (leftside) {
+    leftside = false;
+    btn.classList.remove("on");
+  } else {
+    leftside = true;
+    btn.classList.add("on");
+  }
+}
+const right = (btn) => {
+  if (rightside) {
+    rightside = false;
+    btn.classList.remove("on");
+  } else {
+    rightside = true;
+    btn.classList.add("on");
+  }
+}
 
 //stsrt test
 const start = () => {
@@ -125,21 +184,27 @@ const start = () => {
   //alert about no words
   if (words[0] == undefined) {
     const text = lang[6].replace("20230119smile", `"${select.value}"`)
-    document.querySelector(".root").innerHTML = `
-    <div class="alert alert-info col-11 mx-auto mt-5 weight-normal">
-    ${text}
-    </div>
-    `
+    let div = document.createElement("div");
+    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
+    div.innerHTML = text;
+    document.querySelector(".root").prepend(div);
+    input.setAttribute("disabled");
   }
 
   //get random word object
   let word = words[Math.round(Math.random() * (words.length - 1))];
-  if (count != 0 && count % 100 == 0) {
-    word = memorized[parseInt(Math.random() * memorized.length)];
-  }
 
   let p = document.querySelector(".word");
-  let side = Math.round(Math.random() * 1);
+
+  let side = 0;
+  if (leftside && !rightside) {
+    side = 0;
+  } else if (!leftside && rightside) {
+    side = 1;
+  } else {
+    side = Math.round(Math.random() * 1);
+  }
+
 
   //controll sides
   if (side == 0) {
@@ -167,6 +232,8 @@ const start = () => {
   //note for know word
   note = `\n\n\t${word[side]} - ${word[side2]}\n\n`;
 
+  another_side = word[side2];
+
   //listen answer word
   window.SpeechRecognition = window.webkitSpeechRecognition;
   const recognition = new SpeechRecognition();
@@ -177,7 +244,7 @@ const start = () => {
     const transcript = Array.from(e.results)
       .map(result => result[0])
       .map(result => result.transcript);
-      console.log(transcript)
+    c
     if (transcript == word[side2].toLowerCase()) {
       input.value = "";
       start();
@@ -191,9 +258,14 @@ const start = () => {
   }
 
   //get answer word and check
+  input.removeAttribute("disabled");
   input.addEventListener("input",
     () => {
-      if (input.value.toLowerCase() == word[side2].toLowerCase()) {
+      let lessMark = JSON.stringify(another_side.split(", ")) == JSON.stringify(input.value.split(" "));
+      if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
+        //It was write for test
+        speaktest(input.value);
+
         input.value = "";
         recognition.stop();
         start();
@@ -208,8 +280,3 @@ btn.addEventListener("click", () => {
 
 //first start
 start();
-
-//page close
-const closePage = () => {
-  close(document);
-}

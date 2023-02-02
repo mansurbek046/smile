@@ -5,7 +5,7 @@ document.querySelector(".dict_name").setAttribute("placeholder", lang[25]);
 
 const createDictItem = (text) => {
   let row = document.createElement("div");
-  row.setAttribute("class", "row py-2 window mt-2 mx-auto")
+  row.setAttribute("class", "row py-2 window mt-3 mx-auto")
   let col = document.createElement("div");
   col.setAttribute("class", "col-8 text-truncate");
   col.setAttribute("onclick", "seewords(this)")
@@ -96,6 +96,7 @@ const edit = (e)=> {
 
 const seewords = (e)=> {
   localStorage.setItem("__smile_dict_opened", e.textContent);
+  close(document);
   open("./words.html");
 }
 
@@ -510,7 +511,3 @@ document.querySelectorAll(".name-select").forEach((select)=> {
 
 
 downWriter();
-
-const closePage = ()=> {
-  close(document);
-}

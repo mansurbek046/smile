@@ -14,6 +14,7 @@
 }
 
 body {
+  background-color: black;
   background-image: url("../files/bg.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -141,7 +142,7 @@ select:hover {
   transform: translateY(-200vh);
   width: 95%;
   margin: 10px 2.5%;
-  position: absolute;
+  position: fixed;
   z-index: 4;
 }
 .open,.close {
@@ -169,4 +170,12 @@ select:hover {
 }
 .show_rule p:active {
   text-decoration: underline;
+}
+
+a {
+  color: rgba(255, 255, 255, .9);
+}
+
+a:active {
+  color: aqua;
 }

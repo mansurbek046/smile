@@ -9,8 +9,10 @@
   font-size: 18px;
   font-weight: 200;
   color: rgba(255,255,255,.9);
+  padding: 0!important;
 }
 body {
+  background-color: black;
   background-image: url("../files/bg.jpg");
   background-size: cover;
   background-attachment: fixed;
@@ -24,7 +26,6 @@ body {
   -webkit-backdrop-filter: blur(10px);
   font-family: sans-serif;
   font-weight: 200;
-  width: 95%;
   border-radius: 15px;
   font-size: 22px;
   display: flex;
@@ -32,11 +33,13 @@ body {
   justify-content: center;
   flex-direction: column!important;
   transition: .2s;
+  padding: 0!important;
+  width: 95%!important;
 }
 
 .settings-navbar {
   background-color: rgba(0,0,0,.7);
-  color: rgba(255,255,255,1);
+  color: rgba(255,255,255,.8);
   padding: 5px;
   font-size: 25px;
   position: sticky;
@@ -53,7 +56,7 @@ body {
   margin: 0!important;
   font-size: 20px!important;
   font-weight: 700;
-  background-color: white;
+  background-color: rgba(255,255,255,.8);
   color: black;
   padding: 0px 10px;
   border-radius: 20px;
@@ -75,7 +78,7 @@ select {
   font-family: sans-serif;
   font-weight: 700!important;
   border-radius: 20px!important;
-  color: white;
+  color: rgba(255,255,255,.8);
 }
 select:hover {
   border-color: aqua;
@@ -88,7 +91,7 @@ select:hover {
   justify-content: center;
   padding: 20px 10px!important;
 }
-.answer-box{
+.answer-box {
   justify-content: space-between!important;
 }
 .word-box .word {
@@ -132,11 +135,11 @@ input {
   opacity: .4;
 }
 
-.weight-normal{
+.weight-normal {
   font-weight: normal!important;
 }
 
-#speaking, #listening {
+#speaking, #listening, #left-side, #right-side {
   outline: none;
   transition: .2s;
   background: rgba(255,255,255,.18);
@@ -149,11 +152,18 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: rgba(255,255,255,.8);
   margin: 10px!important;
 }
 
-.on{
+.on {
   background-color: rgba(255,255,255,.9)!important;
   color: black!important;
+}
+
+a{
+  color: rgba(255,255,255,.9);
+}
+a:active{
+  color: aqua;
 }

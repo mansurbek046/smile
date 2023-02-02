@@ -4,7 +4,7 @@
   padding: 0;
 }
 .row {
-  margin: 0!important;
+  margin: 0;
   border-collapse: collapse;
   background: none;
   font-size: 18px;
@@ -12,7 +12,8 @@
   color: rgba(255,255,255,.9);
 }
 body {
-  background: url("../files/bg.jpg");
+  background-color: black;
+  background-image: url("../files/bg.jpg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -21,7 +22,7 @@ body {
 }
 .window {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, .18);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(10px);
   font-family: sans-serif;
@@ -50,6 +51,8 @@ body {
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
   padding: 10px 0!important;
+  backdrop-filter: none!important;
+  -webkit-backdrop-filter: none!important;
 }
 
 .settings-navbar {
@@ -99,7 +102,7 @@ body {
   width: 55%!important;
   margin: 3px 0!important;
 }
-.edit, .delete, .save, .speak, .add, .all, #save {
+.edit, .delete, .save, .speak, .add, .all, .unite {
   outline: none;
   transition: .2s;
   background: rgba(255,255,255,.18);
@@ -113,17 +116,24 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+  box-sizing: border-box!important;
 }
+
+.unite {
+  padding: 10px!important;
+  margin-left: 25px!important;
+}
+
 .delete:active {
   background-color: red;
 }
 .edit:active {
   background-color: limegreen;
 }
-.save:active, .speak:active, .add:active, #save:active {
+.save:active, .speak:active, .add:active, .unite:active {
   background-color: white;
 }
-.plus-btn {
+.plus-btn, .unite-dict {
   outline: none;
   transition: .2s;
   display: flex;
@@ -136,25 +146,42 @@ body {
   height: 3rem;
   border-radius: 50%;
   font-size: 30px;
+  margin: 0 10px!important;
+}
+
+.footer {
   position: fixed;
   bottom: 1rem;
+  width: 100%!important;
+  display: flex!important;
+  justify-content: center!important;
+  align-items: center!important;
 }
 
 .plus-btn:hover {
   background: none;
   color: white;
 }
+.unite-dict:hover {
+  background-color: aqua!important;
+}
+
+img {
+  width: 100%;
+}
 
 .root {
   padding-bottom: 4rem;
+  padding-top: 20px;
   display: flex;
   flex-direction: column;
 }
 
-input, .name-select {
+input, .name-select, .dict {
   width: 100%!important;
   outline: none;
-  background: rgba(255, 255, 255, 0.18);
+  background-color: rgba(255, 255, 255, 0.18);
+  backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.36);
   font-size: 18px!important;
   padding: 3px 15px;
@@ -162,6 +189,11 @@ input, .name-select {
   font-weight: 700!important;
   border-radius: 20px!important;
   color: white;
+}
+
+.dict {
+  width: 75%!important;
+  display: inline-block!important;
 }
 input:hover {
   border-color: black;
@@ -194,12 +226,14 @@ input::placeholder {
 }
 
 .modal-content .window {
-  background-color: rgba(255,255,255,.7)!important;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(255,255,255,.8)!important;
 }
 
 .modal-content .window * {
-  color: black;
-  border-color: black!important;
+  color: rgba(0,0,0,1);
+  border-color: rgba(0,0,0,1)!important;
 }
 
 .all {
@@ -221,4 +255,17 @@ input::placeholder {
 
 .dict_name {
   width: 200px!important;
+}
+
+#selectdict .modal-content {
+  height: 60px!important;
+}
+
+
+a {
+  color: rgba(255, 255, 255, .9);
+}
+
+a:active {
+  color: aqua;
 }
