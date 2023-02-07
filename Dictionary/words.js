@@ -3,52 +3,61 @@ let synth = window.speechSynthesis;
 let root = document.querySelector(".root");
 let plus_btn = document.querySelector(".plus-btn");
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
-
+let limit = 30;
+let writedCount = 0;
+const more = ()=> {
+  limit += 30;
+  writedCount = 0;
+  downWriter();
+}
 const createDictItem = (word, word2) => {
-  let row = document.createElement("div");
-  row.setAttribute("class", "row py-1 window window-2");
-  row.setAttribute("name", word);
-  row.setAttribute("onclick", "dropDisable(this)");
-  let col = document.createElement("div");
-  col.setAttribute("class", "col-12");
-  let col2 = document.createElement("div");
-  col2.setAttribute("class", "col-7");
-  let buttons = document.createElement("div");
-  buttons.setAttribute("class", "p-0 col-5 mt-2 d-flex justify-content-around buttons");
-  let delBtn = document.createElement("button");
-  delBtn.setAttribute("class", "delete");
-  delBtn.setAttribute("onclick", "del(this)");
-  delBtn.setAttribute("disabled", "");
-  let delIcon = document.createElement("i");
-  delIcon.setAttribute("class", "fa-solid fa-trash");
-  let editBtn = document.createElement("button");
-  editBtn.setAttribute("class", "edit");
-  editBtn.setAttribute("onclick", "edit(this)");
-  editBtn.setAttribute("data-bs-toggle", "modal");
-  editBtn.setAttribute("data-bs-target", "#addword");
-  editBtn.setAttribute("disabled", "");
-  let editIcon = document.createElement("i");
-  editIcon.setAttribute("class", "fa-solid fa-pen-to-square");
-  editBtn.append(editIcon);
-  let speakBtn = document.createElement("button");
-  speakBtn.setAttribute("class", "speak");
-  speakBtn.setAttribute("onclick", "speak(this)");
-  speakBtn.setAttribute("disabled", "");
-  let speakIcon = document.createElement("i");
-  speakIcon.setAttribute("class", "fa-solid fa-volume-up");
-  speakBtn.append(speakIcon);
-  let input = document.createElement("input");
-  input.setAttribute("disabled", "");
-  input.setAttribute("value", word);
-  let input2 = document.createElement("input");
-  input2.setAttribute("disabled", "");
-  input2.setAttribute("value", word2);
-  col.append(input);
-  col2.append(input2);
-  buttons.append(delBtn, editBtn, speakBtn);
-  delBtn.append(delIcon);
-  row.append(col, col2, buttons);
-  root.prepend(row);
+  if (writedCount < limit) {
+    let row = document.createElement("div");
+    row.setAttribute("class", "row py-1 window window-2");
+    row.setAttribute("name", word);
+    row.setAttribute("onclick", "dropDisable(this)");
+    let col = document.createElement("div");
+    col.setAttribute("class", "col-12");
+    let col2 = document.createElement("div");
+    col2.setAttribute("class", "col-7");
+    let buttons = document.createElement("div");
+    buttons.setAttribute("class", "p-0 col-5 mt-2 d-flex justify-content-around buttons");
+    let delBtn = document.createElement("button");
+    delBtn.setAttribute("class", "delete");
+    delBtn.setAttribute("onclick", "del(this)");
+    delBtn.setAttribute("disabled", "");
+    let delIcon = document.createElement("i");
+    delIcon.setAttribute("class", "fa-solid fa-trash");
+    let editBtn = document.createElement("button");
+    editBtn.setAttribute("class", "edit");
+    editBtn.setAttribute("onclick", "edit(this)");
+    editBtn.setAttribute("data-bs-toggle", "modal");
+    editBtn.setAttribute("data-bs-target", "#addword");
+    editBtn.setAttribute("disabled", "");
+    let editIcon = document.createElement("i");
+    editIcon.setAttribute("class", "fa-solid fa-pen-to-square");
+    editBtn.append(editIcon);
+    let speakBtn = document.createElement("button");
+    speakBtn.setAttribute("class", "speak");
+    speakBtn.setAttribute("onclick", "speak(this)");
+    speakBtn.setAttribute("disabled", "");
+    let speakIcon = document.createElement("i");
+    speakIcon.setAttribute("class", "fa-solid fa-volume-up");
+    speakBtn.append(speakIcon);
+    let input = document.createElement("input");
+    input.setAttribute("disabled", "");
+    input.setAttribute("value", word);
+    let input2 = document.createElement("input");
+    input2.setAttribute("disabled", "");
+    input2.setAttribute("value", word2);
+    col.append(input);
+    col2.append(input2);
+    buttons.append(delBtn, editBtn, speakBtn);
+    delBtn.append(delIcon);
+    row.append(col, col2, buttons);
+    root.append(row);
+    writedCount += 1;
+  }
 }
 
 let opened_dict_name = localStorage.getItem("__smile_dict_opened");
@@ -102,12 +111,13 @@ const plus = () => {
 
 const downWriter = (search) => {
   let word_count = 0;
-  document.querySelector(".word-count").innerHTML = word_count;
   root.innerHTML = "";
   let names = opened_dict.dict;
+  document.querySelector(".word-count").innerHTML = Object.entries(names).length;
   for (let word in names) {
     if (search) {
-      if (word.indexOf(search) != -1) {
+      writedCount = 0;
+      if (word.toLowerCase().indexOf(search.toLowerCase()) != -1) {
         createDictItem(word, names[word]);
         document.querySelector(".word-count").innerHTML = word_count += 1;
       }
@@ -150,6 +160,7 @@ const addWord = () => {
     localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
     firstWord.value = ""
     secondWord.value = ""
+    writedCount = 0;
     downWriter();
   }
 }
@@ -235,11 +246,10 @@ document.querySelector(".unite").addEventListener("click", ()=> {
   if (Object.entries(target_dict)[0] != undefined) {
     opened_dict.dict = Object.assign(target_dict, opened_dict.dict);
     localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
+    writedCount = 0;
     downWriter();
   }
 })
-
-
 
 
 const closePage = () => {

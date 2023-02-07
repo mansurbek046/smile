@@ -345,8 +345,7 @@ ibtn.addEventListener("click", ()=> {
 const checkSentences = () => {
   loader.classList.remove("d-none");
   const lang = document.querySelector('#text-language').value;
-  const text = document.querySelector('#full-text').value.replace(/(\r\n|\n|\r)/gm,
-    " ");
+  const text = document.querySelector('#full-text').value
   const encodedParams = new URLSearchParams();
   encodedParams.append("language",
     lang);

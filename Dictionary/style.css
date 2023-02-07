@@ -186,7 +186,6 @@ input, .name-select, .dict {
   font-size: 18px!important;
   padding: 3px 15px;
   font-family: sans-serif;
-  font-weight: 700!important;
   border-radius: 20px!important;
   color: white;
 }
@@ -198,7 +197,6 @@ input, .name-select, .dict {
 input:hover {
   border-color: black;
   color: black;
-  box-shadow: none;
 }
 input::placeholder {
   color: rgba(0,0,0,.4);

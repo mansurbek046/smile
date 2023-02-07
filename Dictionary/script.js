@@ -8,7 +8,7 @@ const createDictItem = (text) => {
   row.setAttribute("class", "row py-2 window mt-3 mx-auto")
   let col = document.createElement("div");
   col.setAttribute("class", "col-8 text-truncate");
-  col.setAttribute("onclick", "seewords(this)")
+  col.setAttribute("onclick", "seewords(this)");
   let buttons = document.createElement("div");
   buttons.setAttribute("class", "p-0 col-4 d-flex justify-content-around");
   let delBtn = document.createElement("button");
@@ -56,7 +56,7 @@ const save = ()=> {
   const second_language = document.querySelector("#second-language");
   let input = document.querySelector(".dict_name");
   let value = input.value;
-  if (value != "" && first_language.value != "" && second_language.value != "") {
+  if (value != "" && first_language.value != "" && second_language.value != "" && value!="notMemo") {
     dict["lang"] = {
       first: first_language.value,
       second: second_language.value
@@ -498,7 +498,6 @@ const languages = [{
     "name": "Zulu",
     "code": "zu"
   }]
-
 document.querySelectorAll(".name-select").forEach((select)=> {
   languages.forEach((lt) => {
     let option = document.createElement('option');
@@ -507,7 +506,8 @@ document.querySelectorAll(".name-select").forEach((select)=> {
     select.append(option);
   })
 })
-
-
-
 downWriter();
+const closePage = () => {
+  close(document);
+  open("../index.html");
+}

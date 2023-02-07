@@ -1,15 +1,12 @@
 //speechSynthesis
 const synth = window.speechSynthesis;
-
 //interface language
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
-
 //page close
 const closePage = () => {
   close(document);
   open("../index.html");
 }
-
 //dictionaries
 let select = document.getElementById("select-dict");
 let names = Object.keys(localStorage).sort().reverse();
@@ -28,13 +25,11 @@ const speakBtn = document.getElementById("speaking");
 const listenBtn = document.getElementById("listening");
 let listen = false;
 let speak = false;
-
 let opened_dict;
 let dict;
 let first_language;
 let second_language;
-
-
+let words;
 //alert about no dictionary
 if (select.value == "") {
   document.querySelector(".root").innerHTML = `
@@ -42,15 +37,22 @@ if (select.value == "") {
   ${lang[7]}
   </div>
   `
-}else{
+} else {
   opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`))
   dict = opened_dict.dict;
   first_language = opened_dict.lang.first.split("/")[1];
   second_language = opened_dict.lang.second.split("/")[1];
+  words = Object.entries(dict);
+  if (words[0] == undefined) {
+    const text = lang[6].replace("20230119smile", `"${select.value}"`)
+    let div = document.createElement("div");
+    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
+    div.innerHTML = text;
+    document.querySelector(".root").prepend(div);
+    input.setAttribute("disabled");
+  }
 }
-
 let choosed_language;
-
 //speak voices
 getVoices();
 window.setTimeout(function() {
@@ -58,11 +60,9 @@ window.setTimeout(function() {
 }, 1000);
 var voices = [];
 let voice = false;
-
 function getVoices() {
   voices = synth.getVoices();
 };
-
 //check language
 const checkLang = () => {
   voices.forEach((vc) => {
@@ -71,7 +71,6 @@ const checkLang = () => {
     }
   })
 }
-
 //listen
 listenBtn.addEventListener("click", () => {
   if (window.navigator.onLine) {
@@ -88,7 +87,6 @@ listenBtn.addEventListener("click", () => {
     alert(lang[24])
   }
 })
-
 //speak
 const speak_word = (word) => {
   if (synth.speaking) {
@@ -106,7 +104,6 @@ const speak_word = (word) => {
     voice = false;
   }
 }
-
 //It was write for speaktest
 const speaktest = (word) => {
   if (synth.speaking) {
@@ -130,26 +127,32 @@ speakBtn.addEventListener("click", () => {
     speak = false;
   }
 })
-
 //test containers
 let count = -1;
 let note;
 let side2;
 let another_side;
 let btn = document.querySelector(".question")
-
 //reselect event
 select.addEventListener("input", () => {
   let alertbox = document.querySelector(".alert");
-  alertbox ? alertbox.remove() : null;
+  alertbox ? alertbox.remove(): null;
   opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`));
   dict = opened_dict.dict;
   first_language = opened_dict.lang.first.split("/")[1];
   second_language = opened_dict.lang.second.split("/")[1];
   count = -1;
+  words = Object.entries(dict);
+  if (words[0] == undefined) {
+    const text = lang[6].replace("20230119smile", `"${select.value}"`)
+    let div = document.createElement("div");
+    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
+    div.innerHTML = text;
+    document.querySelector(".root").prepend(div);
+    input.setAttribute("disabled");
+  }
   start();
 })
-
 //check sides
 let leftside = true;
 let rightside = true;
@@ -172,111 +175,104 @@ const right = (btn) => {
   }
 }
 
-//stsrt test
+let notMemo = {};
+let memo = [];
+let word;
+let plus_two_words;
+//start test
 const start = () => {
-  //counter
-  count += 1;
-  document.querySelector(".word-count").innerHTML = count;
-
-  //get words
-  let words = Object.entries(dict);
-
-  //alert about no words
-  if (words[0] == undefined) {
-    const text = lang[6].replace("20230119smile", `"${select.value}"`)
-    let div = document.createElement("div");
-    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
-    div.innerHTML = text;
-    document.querySelector(".root").prepend(div);
-    input.setAttribute("disabled");
+  if (memo.length === words.length) {
+    memo = [];
+    start();
   }
-
   //get random word object
-  let word = words[Math.round(Math.random() * (words.length - 1))];
-
-  let p = document.querySelector(".word");
-
-  let side = 0;
-  if (leftside && !rightside) {
-    side = 0;
-  } else if (!leftside && rightside) {
-    side = 1;
+  word = words[Math.round(Math.random() * (words.length - 1))];
+  plus_two_words = word[0]+word[1];
+  if (memo.indexOf(plus_two_words)!=-1) {
+    start();
   } else {
-    side = Math.round(Math.random() * 1);
-  }
-
-
-  //controll sides
-  if (side == 0) {
-    choosed_language = first_language;
-    checkLang();
-    side2 = 1;
-  } else {
-    choosed_language = second_language;
-    checkLang();
-    side2 = 0;
-  }
-
-  //word-view
-  p.innerHTML = word[side];
-
-  //speak word
-  if (speak) {
-    speak_word(word[side]);
-  }
-
-  //change word-view color
-  p.style.backgroundColor = "white";
-  let input = document.querySelector(".answer-input");
-
-  //note for know word
-  note = `\n\n\t${word[side]} - ${word[side2]}\n\n`;
-
-  another_side = word[side2];
-
-  //listen answer word
-  window.SpeechRecognition = window.webkitSpeechRecognition;
-  const recognition = new SpeechRecognition();
-  recognition.interimResults = true;
-
-  //listened answer word check
-  recognition.addEventListener("result", e => {
-    const transcript = Array.from(e.results)
+    //counter
+    count += 1;
+    document.querySelector(".word-count").innerHTML = count;
+    let p = document.querySelector(".word");
+    let side = 0;
+    if (leftside && !rightside) {
+      side = 0;
+    } else if (!leftside && rightside) {
+      side = 1;
+    } else {
+      side = Math.round(Math.random() * 1);
+    }
+    //controll sides
+    if (side == 0) {
+      choosed_language = first_language;
+      checkLang();
+      side2 = 1;
+    } else {
+      choosed_language = second_language;
+      checkLang();
+      side2 = 0;
+    }
+    //word-view
+    p.innerHTML = word[side];
+    //speak word
+    if (speak) {
+      speak_word(word[side]);
+    }
+    //change word-view color
+    p.style.backgroundColor = "white";
+    let input = document.querySelector(".answer-input");
+    //note for know word
+    note = word;
+    another_side = word[side2];
+    //listen answer word
+    window.SpeechRecognition = window.webkitSpeechRecognition;
+    const recognition = new SpeechRecognition();
+    recognition.interimResults = true;
+    //listened answer word check
+    recognition.addEventListener("result", e => {
+      const transcript = Array.from(e.results)
       .map(result => result[0])
       .map(result => result.transcript);
-    c
-    if (transcript == word[side2].toLowerCase()) {
-      input.value = "";
-      start();
-    }
-  })
-
-  if (listen) {
-    recognition.start();
-  } else {
-    recognition.stop();
-  }
-
-  //get answer word and check
-  input.removeAttribute("disabled");
-  input.addEventListener("input",
-    () => {
-      let lessMark = JSON.stringify(another_side.split(", ")) == JSON.stringify(input.value.split(" "));
-      if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
-        //It was write for test
-        speaktest(input.value);
-
+      if (transcript == word[side2].toLowerCase()) {
         input.value = "";
-        recognition.stop();
         start();
       }
     })
+    if (listen) {
+      recognition.start();
+    } else {
+      recognition.stop();
+    }
+    //get answer word and check
+    input.removeAttribute("disabled");
+    input.addEventListener("input",
+      () => {
+        let lessMark = JSON.stringify(another_side.split(", ")) == JSON.stringify(input.value.split(" "));
+        if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
+          //It was write for test
+          //speaktest(input.value);
+          input.value = "";
+          recognition.stop();
+          memo.push(plus_two_words);
+          start();
+        }
+      })
+  }
 }
-
 //know word
 btn.addEventListener("click", () => {
-  alert(note);
+  let word = note[0];
+  let word2 = note[1];
+  notMemo[word] = word2;
+  localStorage.setItem("__smile_notMemo_dict", JSON.stringify({
+    lang: {
+      first: "_/_",
+      second: "_/_"
+    },
+    dict: notMemo
+  }));
+  alert(`\n\n\t${word} - ${word2}\n\n`);
 });
-
 //first start
 start();

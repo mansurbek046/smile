@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,11 +9,11 @@
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
-</head>
 
+</head>
 <body>
   <nav class="settings-navbar words-navbar">
-    <a href="javascript:history.back()">
+    <a style="color: rgba(255,255,255,.9)" onclick="closePage()">
       <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
     <p class="search-box">
@@ -22,33 +21,36 @@
       <i class="fa-solid fa-magnifying-glass"></i>
     </p>
     <p class="word-count">
+
     </p>
   </nav>
+
   <!-- Modal -->
   <div class="modal fade" id="addword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-dialog d-flex justify-content-center">
       <div class="modal-content">
-        <div class="modal-body window row w-100">
-          <input type="text" class="name-input col-10 mt-2 first-word">
+        <div class="modal-body bg-dark row w-100">
+          <input class="name-input col-10 mt-2 first-word border-0 text-dark bg-info" />
           <div class="col-12 d-flex justify-content-around my-4 px-3">
             <button class="all px-5" disabled>
               0
             </button>
-            <div class="add">
+            <div class="add border-0 bg-info text-dark">
               <i class="fa-solid fa-plus"></i>
             </div>
-            <div class="save" data-bs-dismiss="modal">
+            <div class="save border-0 bg-info text-dark" data-bs-dismiss="modal">
               <i class="fa-solid fa-save"></i>
             </div>
           </div>
-          <input type="text" class="name-input col-10 mb-2 second-word">
+          <input class="name-input col-10 mb-2 second-word border-0 bg-info text-dark"/>
         </div>
       </div>
     </div>
   </div>
+
   <!-- Modal2 -->
   <div class="modal fade" id="selectdict" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
-    <div class="modal-dialog modal-dialog-centered d-flex justify-content-center">
+    <div class="modal-dialog d-flex justify-content-center">
       <div class="modal-content">
         <div class="modal-body window row w-100">
           <select class="dict">
@@ -60,8 +62,14 @@
       </div>
     </div>
   </div>
-  <div class="root mb-5 pb-5 pt-0">
+
+  <div class="root m-0 pt-0 pb-0">
+
   </div>
+  <button class="row py-1 window window-2" style="margin-bottom: 5.5rem" onclick="more(this)">
+    <i class="fas fa-chevron-circle-down"></i>
+  </button>
+  <hr>
   <div class="row footer">
     <button class="plus-btn" data-bs-toggle="modal" data-bs-target="#addword" onclick="plus()">
       <i class="fa-solid fa-plus"></i>
@@ -70,9 +78,9 @@
       <img src="../files/unite.png" />
     </button>
   </div>
+
   <script src="../bootstrap/js/bootstrap.min.js"></script>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>
   <script src="words.js" type="text/javascript" charset="utf-8"></script>
 </body>
-
 </html>
