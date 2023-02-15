@@ -31,23 +31,13 @@ body {
   font-family: sans-serif;
   font-weight: 700!important;
   width: 100%;
-  font-size: 20px!important;
+  font-size: 18px!important;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
   padding: 10px!important;
   padding-bottom: 60px;
-}
-
-.window #full-text {
-  width: 100% !important;
-  height: 100% !important;
-  border: none!important;
-  outline: none!important;
-  background: none;
-  font-weight: 700!important;
-  color: white;
 }
 
 .settings-navbar {
@@ -105,11 +95,16 @@ select:hover {
 }
 
 .checked_txt span {
-  color: rgb(207,226,255)!important;
-  text-decoration: underline!important;
+  background-color: aqua!important;
+  color: black;
+  padding: 0 3px;
+  border-radius: 5px;
+  font-weight: bold;
 }
 
 .checked_txt, .loader {
+  outline: none;
+  border: none;
   width: 100%;
   height: 100%!important;
   color: white!important;
@@ -121,7 +116,7 @@ select:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   font-weight: bold;
   font-size: 3rem!important;
   font-style: normal;

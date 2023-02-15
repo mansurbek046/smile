@@ -13,7 +13,7 @@
 </head>
 <body>
   <nav class="settings-navbar words-navbar">
-    <a style="color: rgba(255,255,255,.9)" onclick="closePage()">
+    <a href="javascript:history.back()">
       <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
     <p class="search-box">
@@ -29,20 +29,20 @@
   <div class="modal fade" id="addword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
     <div class="modal-dialog d-flex justify-content-center">
       <div class="modal-content">
-        <div class="modal-body bg-dark row w-100">
-          <input class="name-input col-10 mt-2 first-word border-0 text-dark bg-info" />
+        <div class="modal-body row window w-100">
+          <input class="name-input col-10 mt-2 first-word" />
           <div class="col-12 d-flex justify-content-around my-4 px-3">
             <button class="all px-5" disabled>
               0
             </button>
-            <div class="add border-0 bg-info text-dark">
+            <div class="add">
               <i class="fa-solid fa-plus"></i>
             </div>
-            <div class="save border-0 bg-info text-dark" data-bs-dismiss="modal">
+            <div class="save" data-bs-dismiss="modal">
               <i class="fa-solid fa-save"></i>
             </div>
           </div>
-          <input class="name-input col-10 mb-2 second-word border-0 bg-info text-dark"/>
+          <input class="name-input col-10 mb-2 second-word   " />
         </div>
       </div>
     </div>

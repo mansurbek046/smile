@@ -59,8 +59,8 @@ button.addEventListener('click', e => {
   speak();
   textInput.blur();
   button.setAttribute("disabled", "");
-  button.style.background = "none";
-  button.style.color = "white";
+  button.style.background = "aqua";
+  button.style.color = "black";
 });
 
 voiceSelect.addEventListener('change', e => speak());

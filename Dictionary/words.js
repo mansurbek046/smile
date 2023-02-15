@@ -1,5 +1,4 @@
 let synth = window.speechSynthesis;
-
 let root = document.querySelector(".root");
 let plus_btn = document.querySelector(".plus-btn");
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
@@ -141,7 +140,6 @@ const upWriter = (word, word2) => {
   let addBtn = document.querySelector(".add");
   addBtn.addEventListener("click", (e) => {
     addWord();
-    document.querySelector(".all").innerHTML = (count += 1)
   })
   let saveBtn = document.querySelector(".save");
   saveBtn.addEventListener("click", () => {
@@ -158,6 +156,7 @@ const addWord = () => {
   if (word != "" && word2 != "") {
     opened_dict.dict[word] = word2;
     localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
+    document.querySelector(".all").innerHTML = (count += 1)
     firstWord.value = ""
     secondWord.value = ""
     writedCount = 0;
@@ -171,6 +170,7 @@ const del = (e) => {
   if (window.confirm(text)) {
     delete opened_dict.dict[word]
     localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
+    writedCount = 0;
     downWriter();
   }
 }
@@ -249,6 +249,12 @@ document.querySelector(".unite").addEventListener("click", ()=> {
     writedCount = 0;
     downWriter();
   }
+})
+
+let secondWord = document.querySelector(".second-word");
+secondWord.addEventListener("keypress", ()=> {
+  document.querySelector(".all").innerHTML = 0;
+  addWord();
 })
 
 

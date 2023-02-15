@@ -12,7 +12,7 @@
 </head>
 <body>
   <nav class="settings-navbar">
-    <a  href="javascript:history.back()">
+    <a href="javascript:history.back()">
       <i class="fas fa-chevron-circle-left" aria-hidden="true"></i>
     </a>
     <p>
@@ -20,18 +20,31 @@
     </p>
   </nav>
   <!--div class="row d-flex align-items-center p-3 window">
-    <div class="col-7">
-      <item id="17"></item>
-    </div>
-    <div class="col-5">
-      <select name="speaker" id="speaker">
-        <option value="male" id="18">
-        </option>
-        <option value="female" id="19">
+      <div class="col-7">
+        <item id="17"></item>
+      </div>
+      <div class="col-5">
+        <select name="speaker" id="speaker">
+          <option value="male" id="18">
           </option>
-      </select>
+          <option value="female" id="19">
+            </option>
+        </select>
+      </div>
+    </div-->
+  <div class="row d-flex align-items-center p-3 window">
+    <div class="col-6">
+      <!--item id="20"></item-->
+      Billing
     </div>
-  </div-->
+    <div class="col-6 text-end">
+       <label class="pay-btn">
+        <!--item id="22"></item-->Pay
+        <i class="fas fa-coins" aria-hidden="true"></i>
+        </label>
+    </div>
+  </div>
+
   <div class="row d-flex align-items-center p-3 window">
     <div class="col-6">
       <item id="20"></item>
@@ -69,6 +82,7 @@
   <footer>
     © mansurbek@yahoo.com
   </footer>
+  <script src="https://js.stripe.com/v3"></script>
   <script src="../bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>
   <script src="script.js"></script>

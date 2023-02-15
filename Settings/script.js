@@ -73,3 +73,6 @@ const setFontValue = (li)=> {
   li.classList.add("active");
   setFont();
 }
+
+
+var stripe=Stripe()

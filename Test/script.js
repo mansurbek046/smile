@@ -7,6 +7,8 @@ const closePage = () => {
   close(document);
   open("../index.html");
 }
+let input = document.querySelector(".answer-input");
+
 //dictionaries
 let select = document.getElementById("select-dict");
 let names = Object.keys(localStorage).sort().reverse();
@@ -49,7 +51,7 @@ if (select.value == "") {
     div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
     div.innerHTML = text;
     document.querySelector(".root").prepend(div);
-    input.setAttribute("disabled");
+    input.setAttribute("disabled","");
   }
 }
 let choosed_language;
@@ -134,7 +136,7 @@ let side2;
 let another_side;
 let btn = document.querySelector(".question")
 //reselect event
-select.addEventListener("input", () => {
+select.addEventListener("change", () => {
   let alertbox = document.querySelector(".alert");
   alertbox ? alertbox.remove(): null;
   opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`));
@@ -221,7 +223,6 @@ const start = () => {
     }
     //change word-view color
     p.style.backgroundColor = "white";
-    let input = document.querySelector(".answer-input");
     //note for know word
     note = word;
     another_side = word[side2];

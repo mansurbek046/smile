@@ -125,7 +125,7 @@ select:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute;
+  position: fixed;
   font-weight: bold;
   font-size: 3rem!important;
   font-style: normal;

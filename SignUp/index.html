@@ -10,16 +10,17 @@
 </head>
 
 <body>
-  <div class="row d-flex justify-content-center align-items-center pt-5">
-    <div class="mt-4 mb-5 col-md-8 col-10 window">
-      <form class="pt-5">
-        <label for="name" class="floating-label text-light">Ismingiz:</label>
-        <input id="name" type="text" class="input" name="name">
-        <label for="surname" class="floating-label text-light">Familiyangiz:</label>
-        <input id="surname" type="text" class="input" name="surname">
-        <label for="date_of_birth" class="floating-label text-light">Tug'ilgan sanangiz(kun/oy/yil):</label>
+  <div class="row d-flex justify-content-center align-items-center">
+    <div class="mt-3 mb-5 col-md-8 col-10 window">
+      <h1 align="center" class="text-light mt-3 mb-0">Ro'yhatdan o'tish</h1>
+      <form>
+        <label for="first_name" class="floating-label text-light">Ism:</label>
+        <input id="first_name" type="text" class="input" name="first_name">
+        <label for="second_name" class="floating-label text-light">Familiya:</label>
+        <input id="second_name" type="text" class="input" name="second_name">
+        <label for="date_of_birth" class="floating-label text-light">Tug'ilgan sana:</label>
         <input id="date_of_birth" class="input" type="date" name="date_of_birth">
-        <label for="gender" class="floating-label text-light">Jinsingizni tanlang:</label>
+        <label for="gender" class="floating-label text-light">Jins:</label>
         <select id="gender" class="input" name="gender">
           <option value="" disabled selected></option>
           <option value="male">
@@ -29,7 +30,7 @@
             Ayol
           </option>
         </select>
-        <label for="mother_tongue" class="floating-label text-light">Ona tilingizni tanlang:</label>
+        <label for="mother_tongue" class="floating-label text-light">Ona tili:</label>
         <select id="mother_tongue" class="input" name="mother_tongue">
           <option value="uz">Uzbek - o‘zbek</option>
           <option value="af">Afrikaans</option>
@@ -174,11 +175,16 @@
           <option value="yo">Yoruba - Èdè Yorùbá</option>
           <option value="zu">Zulu - isiZulu</option>
         </select>
+        <label for="email" class="floating-label text-light">Email:</label>
+        <input id="email" type="email" class="input" name="email">
+        <label for="password" class="floating-label text-light">Parol:</label>
+        <input id="password" type="password" class="input" name="password">
+        <button id="submit">O'tish</button>
       </form>
-      <button id="submit">Boshlash</button>
+      <a href="../SignIn/index.html" class="d-block w-100 text-center mb-2">Kirish</a>
     </div>
-    <label class="avatar" for="photo"></label>
-    <input type="file" class="d-none" accept="image/*" id="photo">
+    <!--label class="avatar" for="photo"></label>
+            <input type="file" class="d-none" accept="image/*" id="photo"-->
   </div>
   <script src="./script.js"></script>
 </body>

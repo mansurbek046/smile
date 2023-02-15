@@ -1,14 +1,13 @@
 let loader = document.querySelector(".loader");
 let textbox = document.querySelector(".window .checked_txt");
-let textarea = document.querySelector(".window textarea");
 let ibtn = document.querySelector(".check div i");
 let show_rule_box = document.querySelector(".show_rule");
 
 let old_text = localStorage.getItem("__smile_grammar_old_text");
 
-textarea.innerHTML = old_text ? old_text: "";
-textarea.addEventListener("input", ()=> {
-  localStorage.setItem("__smile_grammar_old_text", textarea.value);
+textbox.innerHTML = old_text ? old_text: "";
+textbox.addEventListener("input", ()=> {
+  localStorage.setItem("__smile_grammar_old_text", textbox.textContent);
 });
 
 
@@ -326,16 +325,10 @@ languages.forEach((lt) => {
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
 
 //Listen command
-let play = true;
+
 ibtn.addEventListener("click", ()=> {
   if (window.navigator.onLine) {
-    if (play) {
-      checkSentences();
-      play = false;
-    } else {
-      edit_txt();
-      play = true;
-    }
+    checkSentences();
   } else {
     alert(lang[24]);
   }
@@ -345,7 +338,7 @@ ibtn.addEventListener("click", ()=> {
 const checkSentences = () => {
   loader.classList.remove("d-none");
   const lang = document.querySelector('#text-language').value;
-  const text = document.querySelector('#full-text').value
+  const text = document.querySelector('.checked_txt').textContent;
   const encodedParams = new URLSearchParams();
   encodedParams.append("language",
     lang);
@@ -400,11 +393,7 @@ const viewContent = (res_txt, user_txt) => {
     id += 1;
   };
   textbox.innerHTML = checked_txt;
-  textbox.classList.remove('d-none')
   loader.classList.add("d-none");
-  textarea.classList.add("d-none");
-  ibtn.classList.remove("fa-play");
-  ibtn.classList.add("fa-edit");
 }
 
 window.setInterval(function() {
@@ -446,40 +435,33 @@ const close_box = ()=> {
     250);
 }
 
-const edit_txt = ()=> {
-  textbox.classList.add("d-none");
-  textarea.classList.remove("d-none");
-  ibtn.classList.remove("fa-edit");
-  ibtn.classList.add("fa-play");
-}
 let input = document.querySelector("#file")
 input.addEventListener("input", ()=> {
   if (window.navigator.onLine) {
-    if (play) {
+    loader.classList.remove("d-none");
+    const data = new FormData();
+    data.append("image", input.files[0]);
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'X-RapidAPI-Key': 'd8d30974d7msh24bcdbb92bb7ba2p19685ajsn1daaec9e691e',
+        'X-RapidAPI-Host': 'ocr-extract-text.p.rapidapi.com'
+      },
+      body: data
+    };
+
+    fetch('https://ocr-extract-text.p.rapidapi.com/ocr', options)
+    .then(response => response.json())
+    .then(response => {
+      textbox.innerHTML = response.text;
+      loader.classList.add("d-none");
+    })
+    .catch(err => {
+      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
       loader.classList.remove("d-none");
-      const data = new FormData();
-      data.append("image", input.files[0]);
+    });
 
-      const options = {
-        method: 'POST',
-        headers: {
-          'X-RapidAPI-Key': 'd8d30974d7msh24bcdbb92bb7ba2p19685ajsn1daaec9e691e',
-          'X-RapidAPI-Host': 'ocr-extract-text.p.rapidapi.com'
-        },
-        body: data
-      };
-
-      fetch('https://ocr-extract-text.p.rapidapi.com/ocr', options)
-      .then(response => response.json())
-      .then(response => {
-        textarea.innerHTML = response.text;
-        loader.classList.add("d-none");
-      })
-      .catch(err => {
-        document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
-        loader.classList.remove("d-none");
-      });
-    }
   } else {
     alert(lang[24]);
   }
@@ -552,4 +534,3 @@ message.addEventListener("dblclick", ()=> {
     alert(lang[24]);
   }
 })
-

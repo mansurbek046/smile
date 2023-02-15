@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  text-decoration: none!important;
 }
 .row {
   margin: 0;
@@ -26,7 +27,7 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(10px);
   font-family: sans-serif;
-  font-weight: 200;
+  font-weight: 700;
   width: 95%;
   border-radius: 15px;
   font-size: 22px;
@@ -158,10 +159,7 @@ body {
   align-items: center!important;
 }
 
-.plus-btn:hover {
-  background: none;
-  color: white;
-}
+.plus-btn:hover, 
 .unite-dict:hover {
   background-color: aqua!important;
 }
@@ -177,7 +175,9 @@ img {
   flex-direction: column;
 }
 
-input, .name-select, .dict {
+input,
+.name-select,
+.dict {
   width: 100%!important;
   outline: none;
   background-color: rgba(255, 255, 255, 0.18);
@@ -210,10 +210,12 @@ input::placeholder {
   background: none!important;
 }
 
-.window-2 .buttons, .window-2 .col-7 {
+.window-2 .buttons,
+.window-2 .col-7 {
   display: none!important;
 }
-.window-2:hover .buttons, .window-2:hover .col-7 {
+.window-2:hover .buttons,
+.window-2:hover .col-7 {
   display: flex!important;
 }
 
