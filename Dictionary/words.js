@@ -149,6 +149,7 @@ const upWriter = (word, word2) => {
 }
 
 const addWord = () => {
+  let count=0;
   let firstWord = document.querySelector(".first-word");
   let secondWord = document.querySelector(".second-word");
   word = firstWord.value;

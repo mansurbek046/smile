@@ -358,7 +358,7 @@ const checkSentences = () => {
   .then(response => response.json())
   .then(response => viewContent(response, text))
   .catch(err => {
-    document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+    alert(err);
     loader.classList.remove("d-none");
   });
 }
@@ -439,9 +439,6 @@ let input = document.querySelector("#file")
 input.addEventListener("input", ()=> {
   if (window.navigator.onLine) {
     loader.classList.remove("d-none");
-    const data = new FormData();
-    data.append("image", input.files[0]);
-
     const options = {
       method: 'POST',
       headers: {
@@ -458,10 +455,9 @@ input.addEventListener("input", ()=> {
       loader.classList.add("d-none");
     })
     .catch(err => {
-      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+      alert(err);
       loader.classList.remove("d-none");
     });
-
   } else {
     alert(lang[24]);
   }
@@ -491,10 +487,9 @@ rule.addEventListener("dblclick", ()=> {
     .then(response => response.json())
     .then(response => {
       rule.innerHTML = response[0].texts;
-      loader.classList.add("d-none");
     })
     .catch(err => {
-      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+      alert(err);
     });
   } else {
     alert(lang[24]);
@@ -527,9 +522,7 @@ message.addEventListener("dblclick", ()=> {
       message.innerHTML = response[0].texts;
       loader.classList.add("d-none");
     })
-    .catch(err => {
-      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
-    });
+    .catch(err => alert(err));
   } else {
     alert(lang[24]);
   }

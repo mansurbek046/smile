@@ -100,7 +100,7 @@ select:hover {
   font-weight: bold!important;
   background-clip: text!important;
   -webkit-background-clip: text!important;
-  color: transparent;
+  color: white;
   width: 95%!important;
   max-height: 30vh!important;
   font-weight: 900!important;

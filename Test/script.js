@@ -34,11 +34,7 @@ let second_language;
 let words;
 //alert about no dictionary
 if (select.value == "") {
-  document.querySelector(".root").innerHTML = `
-  <div class="alert alert-info col-11 mx-auto mt-5 weight-normal">
-  ${lang[7]}
-  </div>
-  `
+  alert(`${lang[7]}`);
 } else {
   opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`))
   dict = opened_dict.dict;
@@ -47,11 +43,8 @@ if (select.value == "") {
   words = Object.entries(dict);
   if (words[0] == undefined) {
     const text = lang[6].replace("20230119smile", `"${select.value}"`)
-    let div = document.createElement("div");
-    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
-    div.innerHTML = text;
-    document.querySelector(".root").prepend(div);
-    input.setAttribute("disabled","");
+    alert(text);
+    input.setAttribute("disabled", "");
   }
 }
 let choosed_language;
@@ -130,28 +123,23 @@ speakBtn.addEventListener("click", () => {
   }
 })
 //test containers
-let count = -1;
+let count = 0;
 let note;
 let side2;
 let another_side;
 let btn = document.querySelector(".question")
 //reselect event
 select.addEventListener("change", () => {
-  let alertbox = document.querySelector(".alert");
-  alertbox ? alertbox.remove(): null;
   opened_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`));
   dict = opened_dict.dict;
   first_language = opened_dict.lang.first.split("/")[1];
   second_language = opened_dict.lang.second.split("/")[1];
-  count = -1;
+  count = 0;
   words = Object.entries(dict);
   if (words[0] == undefined) {
     const text = lang[6].replace("20230119smile", `"${select.value}"`)
-    let div = document.createElement("div");
-    div.setAttribute("class", "alert alert-info col-11 mx-auto mt-5 weight-normal");
-    div.innerHTML = text;
-    document.querySelector(".root").prepend(div);
-    input.setAttribute("disabled");
+    alert(text);
+    input.setAttribute("disabled", "");
   }
   start();
 })
@@ -193,9 +181,6 @@ const start = () => {
   if (memo.indexOf(plus_two_words)!=-1) {
     start();
   } else {
-    //counter
-    count += 1;
-    document.querySelector(".word-count").innerHTML = count;
     let p = document.querySelector(".word");
     let side = 0;
     if (leftside && !rightside) {
@@ -249,13 +234,15 @@ const start = () => {
     input.removeAttribute("disabled");
     input.addEventListener("input",
       () => {
-        let lessMark = JSON.stringify(another_side.split(", ")) == JSON.stringify(input.value.split(" "));
+        let lessMark = JSON.stringify(another_side.toLowerCase().split(", ")) == JSON.stringify(input.value.toLowerCase().split(" "));
         if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
           //It was write for test
           //speaktest(input.value);
           input.value = "";
           recognition.stop();
           memo.push(plus_two_words);
+          count += 1;
+          document.querySelector(".word-count").innerHTML = count;
           start();
         }
       })

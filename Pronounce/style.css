@@ -19,7 +19,6 @@ body {
   background-attachment: fixed;
   background-position: center center;
   background-repeat: no-repeat;
-  height: 100vh;
 }
 
 .settings-navbar {
@@ -64,9 +63,14 @@ body {
   padding: 10px!important;
 }
 
-.window-hover:hover {
-  background-color: rgba(255,255,255,.7);
-  color: black;
+.window-hover{
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.window{
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-top: none;
 }
 
 .input, button {
