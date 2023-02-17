@@ -80,7 +80,7 @@ document.querySelector('.share').addEventListener("click",()=>{
   if(window.navigator.share){
     window.navigator.share({
       text: lang[29],
-      url: "https:smileuz.vercel.app"
+      url: "https://smileuz.vercel.app"
     })
   }
 })
