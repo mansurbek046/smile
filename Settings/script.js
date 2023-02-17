@@ -19,8 +19,6 @@ Orbitron
 RussoOne
 Sofia`.split("\n").sort();
 
-const lang = JSON.parse(localStorage.getItem("__smile_language"));
-
 const dropdown = document.querySelector(".dropdown-menu");
 let option = "";
 fonts.forEach((font) => {
@@ -78,6 +76,7 @@ const setFontValue = (li) => {
 
 document.querySelector('.share').addEventListener("click",()=>{
   if(window.navigator.share){
+    var lang = JSON.parse(localStorage.getItem("__smile_language"));
     window.navigator.share({
       text: lang[29],
       url: "https://smileuz.vercel.app"
