@@ -1,18 +1,20 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
-.row{
+
+.row {
   height: 100vh;
-  margin: 0!important;
+  margin: 0 !important;
   background: none;
-  width: 300px!important;
-  height: 440px!important;
+  width: 300px !important;
+  height: 440px !important;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
+
 body {
   background-color: black;
   background-image: url("./files/bg.jpg");
@@ -43,21 +45,23 @@ body {
   height: 130px;
 }
 
-i{
-    width: 80%;
-    font-size: 3rem;
-    margin: auto;
-    margin-bottom: 12px;
-    margin-top: 10px;
-}
-a{
-    text-decoration: unset;
-    color: white;
+i {
+  width: 80%;
+  font-size: 3rem;
+  margin: auto;
+  margin-bottom: 12px;
+  margin-top: 10px;
 }
 
-.window:hover{
-    background-color: rgba(255,255,255,.7);
+a {
+  text-decoration: unset;
+  color: white;
 }
-.window:hover a{
+
+.window:hover {
+  background-color: rgba(255, 255, 255, .7);
+}
+
+.window:hover a {
   color: black;
 }

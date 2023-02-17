@@ -399,7 +399,7 @@ const languages = [{
   "code": "zu"
 }]
 
-const lang=JSON.parse(localStorage.getItem("__smile_language"));
+const lang = JSON.parse(localStorage.getItem("__smile_language"));
 
 const from = document.querySelector('#from-language');
 const to = document.querySelector('#to-language');
@@ -408,8 +408,8 @@ languages.forEach((lt) => {
   option.textContent = `${lt.name}`;
   option.setAttribute('data-name', lt.name);
   option.setAttribute('value', lt.code);
-  if(lt.name=="English"){
-    option.setAttribute("selected","");
+  if (lt.name == "English") {
+    option.setAttribute("selected", "");
   }
   from.append(option);
 });
@@ -418,8 +418,8 @@ languages.forEach((lt) => {
   option.textContent = `${lt.name}`;
   option.setAttribute('data-name', lt.name);
   option.setAttribute('value', lt.code);
-    if(lt.name=="Uzbek"){
-    option.setAttribute("selected","");
+  if (lt.name == "Uzbek") {
+    option.setAttribute("selected", "");
   }
   to.append(option);
 })
@@ -429,7 +429,7 @@ const loader = document.querySelector(".loader")
 window.setInterval(function() {
   let text = loader.textContent;
   if (text.length != 3) {
-    loader.innerHTML = text+"•";
+    loader.innerHTML = text + "•";
   } else {
     loader.innerHTML = "";
   }
@@ -437,15 +437,15 @@ window.setInterval(function() {
 
 const translated = document.querySelector("#text2");
 
-document.querySelector("#translate").addEventListener("click", ()=> {
+document.querySelector("#translate").addEventListener("click", () => {
   if (window.navigator.onLine) {
     loader.classList.remove("d-none");
     const textarea = document.querySelector("#text");
-    let body=JSON.stringify({
-        texts: [textarea.value],
-        tls: [to.value],
-        sl: from.value
-      })
+    let body = JSON.stringify({
+      texts: [textarea.value],
+      tls: [to.value],
+      sl: from.value
+    })
     const options = {
       method: 'POST',
       headers: {
@@ -456,16 +456,16 @@ document.querySelector("#translate").addEventListener("click", ()=> {
       body: body
     };
     fetch('https://ai-translate.p.rapidapi.com/translates',
-      options)
-    .then(response => response.json())
-    .then(response => {
-      translated.innerHTML = response[0].texts;
-      loader.classList.add("d-none");
-    })
-    .catch(err => {
-      document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
-      loader.classList.remove("d-none");
-    });
+        options)
+      .then(response => response.json())
+      .then(response => {
+        translated.innerHTML = response[0].texts;
+        loader.classList.add("d-none");
+      })
+      .catch(err => {
+        document.body.innerHTML = `<div class="alert alert-info w-75 mt-5 d-block mx-auto">${err}</div>`;
+        loader.classList.remove("d-none");
+      });
   } else {
     alert(lang[24]);
   }
@@ -473,7 +473,7 @@ document.querySelector("#translate").addEventListener("click", ()=> {
 
 const window2 = document.querySelector(".window2");
 
-window2.addEventListener("click", ()=> {
+window2.addEventListener("click", () => {
   window.navigator.clipboard.writeText(translated.innerHTML);
   document.querySelector('.copied').style.display = "block";
   setTimeout(() => {
@@ -481,7 +481,7 @@ window2.addEventListener("click", ()=> {
   }, 1500);
 })
 
-document.querySelector(".replace").addEventListener("click", ()=> {
+document.querySelector(".replace").addEventListener("click", () => {
   const lang1 = document.querySelector("#from-language");
   const lang2 = document.querySelector("#to-language");
   const text1 = document.querySelector("#text");
@@ -496,7 +496,7 @@ document.querySelector(".replace").addEventListener("click", ()=> {
 });
 
 
-const closePage = ()=> {
+const closePage = () => {
   close(document);
   open("../index.html");
 }

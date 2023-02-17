@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="uz-UZ">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
+  <link rel="icon" href="../files/smile.png" type="icon" />
   <title>Settings</title>
   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../fontawesome/css/all.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
 </head>
+
 <body>
   <nav class="settings-navbar">
     <a href="javascript:history.back()">
@@ -32,6 +35,11 @@
             </select>
           </div>
         </div-->
+  <div class="row d-flex align-items-center p-3 window share">
+    <div class="col-12 text-center">
+      <item id="29"></item> <i class="fas fa-share"></i>
+    </div>
+  </div>
   <div class="row d-flex align-items-center p-3 window">
     <div class="col-6">
       <item id="20"></item>
@@ -50,9 +58,18 @@
     <div class="col-6 text-end">
       <label class="upload-btn" for="background">
         <item id="22"></item>
-        <i class="fas fa-file-upload" aria-hidden="true"></i></label>
+        <i class="fas fa-file-upload" aria-hidden="true"></i>
+      </label>
     </div>
     <input class="input-file d-none" type="file" accept="image/jpeg" id="background" />
+  </div>
+  <div class="row d-flex align-items-center p-3 window">
+    <div class="col-6">
+      IcemDev
+    </div>
+    <div class="col-6 text-end">
+      <a href="mailto:icemdev@gmail.com" class="contact py-1">Contact <i class="fas fa-envelope"></i></a>
+    </div>
   </div>
   <div class="row d-flex align-items-center p-3 window">
     <div class="col-6">
@@ -66,16 +83,9 @@
       </ul>
     </div>
   </div>
-  <div class="row d-flex align-items-center p-3 window">
-    <div class="col-6">
-      IcemDev
-    </div>
-    <div class="col-6 text-end">
-      <a href="mailto:icemdev@gmail.com" class="contact py-1">Contact <i class="fas fa-envelope"></i></a>
-    </div>
-  </div>
   <script src="../bootstrap/js/bootstrap.bundle.min.js" type="text/javascript" charset="utf-8"></script>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

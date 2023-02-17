@@ -35,7 +35,7 @@ const createDictItem = (text) => {
 let dict = {};
 let dict_name = "";
 
-const downWriter = ()=> {
+const downWriter = () => {
   root.innerHTML = "";
   let names = Object.keys(localStorage).sort().reverse();
   for (let name of names) {
@@ -47,12 +47,12 @@ const downWriter = ()=> {
 }
 
 let saveBtn = document.querySelector(".save");
-saveBtn.addEventListener("click", ()=> {
+saveBtn.addEventListener("click", () => {
   save();
 })
 
 
-const save = ()=> {
+const save = () => {
   const first_language = document.querySelector("#first-language");
   const second_language = document.querySelector("#second-language");
   let input = document.querySelector(".dict_name");
@@ -76,7 +76,7 @@ const save = ()=> {
 }
 
 
-const del = (e)=> {
+const del = (e) => {
   if (window.confirm(lang[8])) {
     let name = e.parentNode.parentNode.textContent;
     localStorage.removeItem(`__smile_${name}_dict`);
@@ -84,7 +84,7 @@ const del = (e)=> {
   }
 }
 
-const edit = (e)=> {
+const edit = (e) => {
   let first_language = document.querySelector("#first-language");
   let second_language = document.querySelector("#second-language");
   dict_name = e.parentNode.parentNode.textContent;
@@ -95,64 +95,64 @@ const edit = (e)=> {
   second_language.value = dict.lang.second;
 }
 
-const seewords = (e)=> {
+const seewords = (e) => {
   localStorage.setItem("__smile_dict_opened", e.textContent);
 }
 
 const languages = [{
-  "name": "Afrikaans",
-  "code": "af"
+    "name": "Afrikaans",
+    "code": "af"
 }, {
-  "name": "Albanian",
-  "code": "sq"
+    "name": "Albanian",
+    "code": "sq"
 }, {
-  "name": "Amharic",
-  "code": "am"
+    "name": "Amharic",
+    "code": "am"
 }, {
-  "name": "Arabic",
-  "code": "ar"
+    "name": "Arabic",
+    "code": "ar"
 }, {
-  "name": "Armenian",
-  "code": "hy"
+    "name": "Armenian",
+    "code": "hy"
 }, {
-  "name": "Assamese",
-  "code": "as"
+    "name": "Assamese",
+    "code": "as"
 }, {
-  "name": "Aymara",
-  "code": "ay"
+    "name": "Aymara",
+    "code": "ay"
 }, {
-  "name": "Azerbaijani",
-  "code": "az"
+    "name": "Azerbaijani",
+    "code": "az"
 }, {
-  "name": "Bambara",
-  "code": "bm"
+    "name": "Bambara",
+    "code": "bm"
 }, {
-  "name": "Basque",
-  "code": "eu"
+    "name": "Basque",
+    "code": "eu"
 }, {
-  "name": "Belarusian",
-  "code": "be"
+    "name": "Belarusian",
+    "code": "be"
 }, {
-  "name": "Bengali",
-  "code": "bn"
+    "name": "Bengali",
+    "code": "bn"
 }, {
-  "name": "Bhojpuri",
-  "code": "bho"
+    "name": "Bhojpuri",
+    "code": "bho"
 }, {
-  "name": "Bosnian",
-  "code": "bs"
+    "name": "Bosnian",
+    "code": "bs"
 }, {
-  "name": "Bulgarian",
-  "code": "bg"
+    "name": "Bulgarian",
+    "code": "bg"
 }, {
-  "name": "Catalan",
-  "code": "ca"
+    "name": "Catalan",
+    "code": "ca"
 }, {
-  "name": "Cebuano",
-  "code": "ceb"
+    "name": "Cebuano",
+    "code": "ceb"
 }, {
-  "name": "Chichewa",
-  "code": "ny"
+    "name": "Chichewa",
+    "code": "ny"
 },
   {
     "name": "Chinese",
@@ -497,11 +497,11 @@ const languages = [{
     "name": "Zulu",
     "code": "zu"
   }]
-document.querySelectorAll(".name-select").forEach((select)=> {
+document.querySelectorAll(".name-select").forEach((select) => {
   languages.forEach((lt) => {
     let option = document.createElement('option');
     option.textContent = `${lt.name}`;
-    option.setAttribute('value', lt.name+"/"+lt.code);
+    option.setAttribute('value', lt.name + "/" + lt.code);
     select.append(option);
   })
 })

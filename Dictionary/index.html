@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,11 @@
   <title>Dictonary</title>
   <link rel="stylesheet" href="../fontawesome/css/all.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../bootstrap/css/bootstrap.css" type="text/css" media="all" />
+  <link rel="icon" href="../files/smile.png" type="icon" />
   <link rel="stylesheet" href="style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="../fonts/fonts.css" type="text/css" media="all" />
-
 </head>
+
 <body>
   <nav class="settings-navbar">
     <a href="javascript:history.back()">
@@ -20,7 +22,6 @@
       <item id="2"></item>
     </p>
   </nav>
-
   <!-- Modal -->
   <div class="modal fade" id="add_dict" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="false">
     <div class="modal-dialog d-flex justify-content-center">
@@ -32,14 +33,12 @@
           <select id="first-language" class="name-select" name="first">
             <option value="" disabled selected></option>
           </select>
-
           <label for="second-language" class="select-label">
             <item id="28"></item>:
           </label>
           <select id="second-language" class="name-select" name="second">
             <option value="" disabled selected></option>
           </select>
-
           <div class="col-12 d-flex justify-content-between my-4 p-0 pe-1 mb-0">
             <input type="text" class="dict_name" placeholder="...">
             <div class="save" data-bs-dismiss="modal">
@@ -50,18 +49,16 @@
       </div>
     </div>
   </div>
-
   <div class="root container">
-
   </div>
   <div class="row footer">
     <button class="plus-btn" data-bs-toggle="modal" data-bs-target="#add_dict">
       <i class="fa-solid fa-plus"></i>
     </button>
   </div>
-
   <script src="../bootstrap/js/bootstrap.js"></script>
   <script src="../main.js" type="text/javascript" charset="utf-8"></script>
   <script src="script.js" type="text/javascript" charset="utf-8"></script>
 </body>
+
 </html>

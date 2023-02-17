@@ -24,17 +24,17 @@ body {
 
 .window {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  border: none!important;
+  border: none !important;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(10px);
   font-family: sans-serif;
-  font-weight: 700!important;
+  font-weight: 700 !important;
   width: 100%;
-  font-size: 18px!important;
+  font-size: 18px !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px!important;
+  padding: 10px !important;
   padding-bottom: 60px;
   height: 79vh;
 }
@@ -78,7 +78,8 @@ select:hover {
   color: aqua;
 }
 
-.check div, .fromImage div {
+.check div,
+.fromImage div {
   background: white !important;
   color: black !important;
   display: flex;
@@ -87,37 +88,41 @@ select:hover {
   border-radius: 20px !important;
   width: 30px !important;
   height: 30px !important;
-  padding-top: 2px!important;
+  padding-top: 2px !important;
 }
-.check:active div, .fromImage div:active {
-  background-color: aqua!important;
+
+.check:active div,
+.fromImage div:active {
+  background-color: aqua !important;
 }
 
 .checked_txt span {
-  background-color: aqua!important;
+  background-color: aqua !important;
   color: black;
   padding: 0 3px;
   border-radius: 5px;
   font-weight: bold;
 }
 
-.checked_txt, .loader {
+.checked_txt,
+.loader {
   outline: none;
   border: none;
   width: 100%;
-  height: 100%!important;
-  color: white!important;
+  height: 100% !important;
+  color: white !important;
   background: none;
-  border: none!important;
+  border: none !important;
 }
+
 .loader {
-  background-color: rgba(0,0,0,.5)!important;
+  background-color: rgba(0, 0, 0, .5) !important;
   display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
   font-weight: bold;
-  font-size: 3rem!important;
+  font-size: 3rem !important;
   font-style: normal;
   z-index: 5;
 }
@@ -139,7 +144,9 @@ select:hover {
   position: fixed;
   z-index: 4;
 }
-.open,.close {
+
+.open,
+.close {
   animation-name: show_rule_animation;
   animation-delay: 0s;
   animation-duration: .2s;
@@ -147,9 +154,11 @@ select:hover {
   animation-iteration-count: 1;
   animation-timing-function: linear;
 }
+
 .close {
   animation-direction: reverse;
 }
+
 .show_rule div {
   display: inline-block;
 }
@@ -157,11 +166,12 @@ select:hover {
 .show_rule p {
   display: block;
   font-weight: bold;
-  margin: 0!important;
+  margin: 0 !important;
   transition: .3s;
   text-align: center;
-  margin-left: 80%!important;
+  margin-left: 80% !important;
 }
+
 .show_rule p:active {
   text-decoration: underline;
 }

@@ -2,16 +2,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
+
 .row {
   margin: 0;
   border-collapse: collapse;
   background: none;
   font-size: 18px;
   font-weight: 200;
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, .9);
 }
+
 body {
   background-color: black;
   background-image: url("../files/bg.jpg");
@@ -20,6 +22,7 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
 }
+
 .window {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
   border: 1px solid rgba(255, 255, 255, .18);
@@ -35,29 +38,31 @@ body {
   justify-content: flex-start;
   transition: .2s;
 }
+
 .window:hover {
-  background-color: rgba(255,255,255,.7);
+  background-color: rgba(255, 255, 255, .7);
   color: black;
 }
+
 .window:hover * {
   color: black;
   border-color: black;
 }
 
 .window-2 {
-  width: 100%!important;
-  border-radius: 0!important;
+  width: 100% !important;
+  border-radius: 0 !important;
   border: none;
   border-top: 1px solid rgba(255, 255, 255, 0.18);
   border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-  padding: 10px 0!important;
-  backdrop-filter: none!important;
-  -webkit-backdrop-filter: none!important;
+  padding: 10px 0 !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 .settings-navbar {
-  background-color: rgba(0,0,0,.7);
-  color: rgba(255,255,255,1);
+  background-color: rgba(0, 0, 0, .7);
+  color: rgba(255, 255, 255, 1);
   padding: 5px;
   font-size: 25px;
   position: sticky;
@@ -68,11 +73,12 @@ body {
   align-items: center;
   padding-left: 10px;
   padding-right: 10px;
-  color: rgba(255,255,255,.9);
+  color: rgba(255, 255, 255, .9);
 }
+
 .words-navbar p {
-  margin: 0!important;
-  font-size: 20px!important;
+  margin: 0 !important;
+  font-size: 20px !important;
   font-weight: 700;
   background-color: white;
   color: black;
@@ -84,29 +90,37 @@ body {
 }
 
 .settings-navbar .page-name {
-  margin: 0!important;
-  margin-right: 35vw!important;
+  margin: 0 !important;
+  margin-right: 35vw !important;
 }
 
 .settings-navbar .search {
   display: inline-block;
-  width: 80%!important;
+  width: 80% !important;
   margin: 0;
   padding: 0;
   border: none;
   color: black;
-  border-radius: 0!important;
+  border-radius: 0 !important;
 }
+
 .settings-navbar .search-box {
-  padding: 2px 5px!important;
-  width: 55%!important;
-  margin: 3px 0!important;
+  padding: 2px 5px !important;
+  width: 55% !important;
+  margin: 3px 0 !important;
 }
-.edit, .delete, .save, .speak, .add, .all, .unite {
+
+.edit,
+.delete,
+.save,
+.speak,
+.add,
+.all,
+.unite {
   outline: none;
   transition: .2s;
-  background: rgba(255,255,255,.18);
-  border: 1px solid rgba(255,255,255,.36);
+  background: rgba(255, 255, 255, .18);
+  border: 1px solid rgba(255, 255, 255, .36);
   display: inline-block;
   border-radius: 50%;
   font-size: 1.1rem;
@@ -116,24 +130,31 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
-  box-sizing: border-box!important;
+  box-sizing: border-box !important;
 }
 
 .unite {
-  padding: 10px!important;
-  margin-left: 25px!important;
+  padding: 10px !important;
+  margin-left: 25px !important;
 }
 
 .delete:active {
   background-color: red;
 }
+
 .edit:active {
   background-color: limegreen;
 }
-.save:active, .speak:active, .add:active, .unite:active {
+
+.save:active,
+.speak:active,
+.add:active,
+.unite:active {
   background-color: white;
 }
-.plus-btn, .unite-dict {
+
+.plus-btn,
+.unite-dict {
   outline: none;
   transition: .2s;
   display: flex;
@@ -141,26 +162,26 @@ body {
   align-items: center;
   border: none;
   background-color: white;
-  color: rgba(0,0,0,.9);
+  color: rgba(0, 0, 0, .9);
   width: 3rem;
   height: 3rem;
   border-radius: 50%;
   font-size: 30px;
-  margin: 0 10px!important;
+  margin: 0 10px !important;
 }
 
 .footer {
   position: fixed;
   bottom: 1rem;
-  width: 100%!important;
-  display: flex!important;
-  justify-content: center!important;
-  align-items: center!important;
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
-.plus-btn:hover, 
+.plus-btn:hover,
 .unite-dict:hover {
-  background-color: aqua!important;
+  background-color: aqua !important;
 }
 
 img {
@@ -177,87 +198,91 @@ img {
 input,
 .name-select,
 .dict {
-  width: 100%!important;
+  width: 100% !important;
   outline: none;
   background-color: rgba(255, 255, 255, 0.18);
   backdrop-filter: none;
   border: 1px solid rgba(255, 255, 255, 0.36);
-  font-size: 18px!important;
+  font-size: 18px !important;
   padding: 3px 15px;
   font-family: sans-serif;
-  border-radius: 20px!important;
+  border-radius: 20px !important;
   color: white;
 }
 
 .dict {
-  width: 75%!important;
-  display: inline-block!important;
+  width: 75% !important;
+  display: inline-block !important;
 }
+
 input:hover {
   border-color: black;
   color: black;
 }
+
 input::placeholder {
-  color: rgba(0,0,0,.4);
+  color: rgba(0, 0, 0, .4);
 }
 
 .window-2 input {
-  border: none!important;
-  border-radius: 0!important;
-  padding: 0!important;
-  font-size: 20px!important;
-  background: none!important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 20px !important;
+  background: none !important;
 }
 
 .window-2 .buttons,
 .window-2 .col-7 {
-  display: none!important;
+  display: none !important;
 }
+
 .window-2:hover .buttons,
 .window-2:hover .col-7 {
-  display: flex!important;
+  display: flex !important;
 }
 
 .modal-content {
-  background: none!important;
-  width: 300px!important;
-  height: 200px!important;
+  background: none !important;
+  width: 300px !important;
+  height: 200px !important;
 }
 
 .modal-content .window {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(8px);
-  background-color: rgba(255,255,255,.8)!important;
+  background-color: rgba(255, 255, 255, .8) !important;
 }
 
 .modal-content .window * {
-  color: rgba(0,0,0,1);
-  border-color: rgba(0,0,0,1)!important;
+  color: rgba(0, 0, 0, 1);
+  border-color: rgba(0, 0, 0, 1) !important;
 }
 
 .all {
-  border-radius: 20px!important;
-  background-color: rgba(0,0,0,.9)!important;
-  color: rgba(255,255,255,.6)!important;
+  border-radius: 20px !important;
+  background-color: rgba(0, 0, 0, .9) !important;
+  color: rgba(255, 255, 255, .6) !important;
 }
 
 .select-label {
-  padding: 0!important;
-  font-weight: 700!important;
-  font-size: 18px!important;
-  margin-top: 15px!important;
+  padding: 0 !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  margin-top: 15px !important;
 }
+
 .select-label:first-child {
-  margin-top: 0!important;
-  font-size: 18px!important;
+  margin-top: 0 !important;
+  font-size: 18px !important;
 }
 
 .dict_name {
-  width: 200px!important;
+  width: 200px !important;
 }
 
 #selectdict .modal-content {
-  height: 60px!important;
+  height: 60px !important;
 }
 
 

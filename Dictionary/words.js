@@ -4,7 +4,7 @@ let plus_btn = document.querySelector(".plus-btn");
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
 let limit = 30;
 let writedCount = 0;
-const more = ()=> {
+const more = () => {
   limit += 30;
   writedCount = 0;
   downWriter();
@@ -68,8 +68,8 @@ getVoices();
 window.setTimeout(function() {
   getVoices();
   window.setTimeout(function() {
-    check_disable();
-  },
+      check_disable();
+    },
     100);
 }, 1000);
 let voice = false;
@@ -149,7 +149,7 @@ const upWriter = (word, word2) => {
 }
 
 const addWord = () => {
-  let count=0;
+  let count = 0;
   let firstWord = document.querySelector(".first-word");
   let secondWord = document.querySelector(".second-word");
   word = firstWord.value;
@@ -241,7 +241,7 @@ for (let name of names) {
   }
 }
 
-document.querySelector(".unite").addEventListener("click", ()=> {
+document.querySelector(".unite").addEventListener("click", () => {
   const target_dict = JSON.parse(localStorage.getItem(`__smile_${select.value}_dict`)).dict;
 
   if (Object.entries(target_dict)[0] != undefined) {
@@ -253,7 +253,7 @@ document.querySelector(".unite").addEventListener("click", ()=> {
 })
 
 let secondWord = document.querySelector(".second-word");
-secondWord.addEventListener("keypress", ()=> {
+secondWord.addEventListener("keypress", () => {
   document.querySelector(".all").innerHTML = 0;
   addWord();
 })

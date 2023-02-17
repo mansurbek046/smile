@@ -5,8 +5,8 @@ let show_rule_box = document.querySelector(".show_rule");
 
 let old_text = localStorage.getItem("__smile_grammar_old_text");
 
-textbox.innerHTML = old_text ? old_text: "";
-textbox.addEventListener("input", ()=> {
+textbox.innerHTML = old_text ? old_text : "";
+textbox.addEventListener("input", () => {
   localStorage.setItem("__smile_grammar_old_text", textbox.textContent);
 });
 
@@ -326,7 +326,7 @@ const lang = JSON.parse(localStorage.getItem("__smile_language"));
 
 //Listen command
 
-ibtn.addEventListener("click", ()=> {
+ibtn.addEventListener("click", () => {
   if (window.navigator.onLine) {
     checkSentences();
   } else {
@@ -354,13 +354,13 @@ const checkSentences = () => {
     body: encodedParams
   };
   fetch('https://dnaber-languagetool.p.rapidapi.com/v2/check',
-    post_options)
-  .then(response => response.json())
-  .then(response => viewContent(response, text))
-  .catch(err => {
-    alert(err);
-    loader.classList.remove("d-none");
-  });
+      post_options)
+    .then(response => response.json())
+    .then(response => viewContent(response, text))
+    .catch(err => {
+      alert(err);
+      loader.classList.remove("d-none");
+    });
 }
 
 //See checked sentences
@@ -379,15 +379,15 @@ const viewContent = (res_txt, user_txt) => {
       if (word == words_list[i]) {
         let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
         checked_txt += wordSpan;
-      } else if (words_list[i][words_list[i].length-1] == "," && words_list[i].slice(0, words_list[i].length-1) == word) {
+      } else if (words_list[i][words_list[i].length - 1] == "," && words_list[i].slice(0, words_list[i].length - 1) == word) {
         let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
         checked_txt += wordSpan;
       } else {
-        checked_txt += " "+words_list[i];
+        checked_txt += " " + words_list[i];
       }
     };
     words_list = checked_txt.split(" ");
-    if (matches.indexOf(sentence) != matches.length-1) {
+    if (matches.indexOf(sentence) != matches.length - 1) {
       checked_txt = "";
     }
     id += 1;
@@ -399,44 +399,46 @@ const viewContent = (res_txt, user_txt) => {
 window.setInterval(function() {
   let text = loader.textContent;
   if (text.length != 3) {
-    loader.innerHTML = text+"•";
+    loader.innerHTML = text + "•";
   } else {
     loader.innerHTML = "";
   }
 }, 300);
 
-const show_rule = (e)=> {
+const show_rule = (e) => {
   let matches = JSON.parse(localStorage.getItem("__smile_grammar_"));
   let sentence = matches[e.id];
   const {
-    message, replacements, rule
+    message,
+    replacements,
+    rule
   } = sentence;
   let replacements_txt = "";
   replacements.slice(0,
-    10).forEach((obj)=> {
-      let p = `${obj.value}, `;
-      if (obj.shortDescription) {
-        p = `${obj.value} (${obj.shortDescription}), `;
-      }
-      replacements_txt += p;
-    })
+    10).forEach((obj) => {
+    let p = `${obj.value}, `;
+    if (obj.shortDescription) {
+      p = `${obj.value} (${obj.shortDescription}), `;
+    }
+    replacements_txt += p;
+  })
   document.querySelector(".message").innerHTML = message;
   document.querySelector(".replacements").innerHTML = replacements_txt;
   document.querySelector(".rule").innerHTML = `${rule.description} (${rule.category.name})`;
 
   show_rule_box.classList.add("open");
 }
-const close_box = ()=> {
+const close_box = () => {
   show_rule_box.classList.add("close");
   show_rule_box.classList.remove("open");
   setTimeout(function() {
-    show_rule_box.classList.remove("close")
-  },
+      show_rule_box.classList.remove("close")
+    },
     250);
 }
 
 let input = document.querySelector("#file")
-input.addEventListener("input", ()=> {
+input.addEventListener("input", () => {
   if (window.navigator.onLine) {
     loader.classList.remove("d-none");
     const options = {
@@ -449,22 +451,22 @@ input.addEventListener("input", ()=> {
     };
 
     fetch('https://ocr-extract-text.p.rapidapi.com/ocr', options)
-    .then(response => response.json())
-    .then(response => {
-      textbox.innerHTML = response.text;
-      loader.classList.add("d-none");
-    })
-    .catch(err => {
-      alert(err);
-      loader.classList.remove("d-none");
-    });
+      .then(response => response.json())
+      .then(response => {
+        textbox.innerHTML = response.text;
+        loader.classList.add("d-none");
+      })
+      .catch(err => {
+        alert(err);
+        loader.classList.remove("d-none");
+      });
   } else {
     alert(lang[24]);
   }
 })
 
 const rule = document.querySelector(".rule");
-rule.addEventListener("dblclick", ()=> {
+rule.addEventListener("dblclick", () => {
   const text = rule.textContent;
   rule.innerHTML = "...";
   if (window.navigator.onLine) {
@@ -483,21 +485,21 @@ rule.addEventListener("dblclick", ()=> {
       body: body
     };
     fetch('https://ai-translate.p.rapidapi.com/translates',
-      options)
-    .then(response => response.json())
-    .then(response => {
-      rule.innerHTML = response[0].texts;
-    })
-    .catch(err => {
-      alert(err);
-    });
+        options)
+      .then(response => response.json())
+      .then(response => {
+        rule.innerHTML = response[0].texts;
+      })
+      .catch(err => {
+        alert(err);
+      });
   } else {
     alert(lang[24]);
   }
 })
 
 const message = document.querySelector(".message");
-message.addEventListener("dblclick", ()=> {
+message.addEventListener("dblclick", () => {
   const text = message.textContent;
   message.innerHTML = "...";
   if (window.navigator.onLine) {
@@ -516,13 +518,13 @@ message.addEventListener("dblclick", ()=> {
       body: body
     };
     fetch('https://ai-translate.p.rapidapi.com/translates',
-      options)
-    .then(response => response.json())
-    .then(response => {
-      message.innerHTML = response[0].texts;
-      loader.classList.add("d-none");
-    })
-    .catch(err => alert(err));
+        options)
+      .then(response => response.json())
+      .then(response => {
+        message.innerHTML = response[0].texts;
+        loader.classList.add("d-none");
+      })
+      .catch(err => alert(err));
   } else {
     alert(lang[24]);
   }

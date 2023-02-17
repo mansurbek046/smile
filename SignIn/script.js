@@ -3,7 +3,7 @@ let password = document.getElementById("password");
 
 //submit button
 const btnsubmit = document.querySelector('#submit');
-btnsubmit.addEventListener("click", (e)=> {
+btnsubmit.addEventListener("click", (e) => {
   e.preventDefault();
   let count = 0;
   let user = {

@@ -26,8 +26,8 @@ body {
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
-  width: 85px!important;
-  height: 85px!important;
+  width: 85px !important;
+  height: 85px !important;
   border-radius: 50%;
   position: absolute;
   top: 24px;
@@ -36,20 +36,21 @@ body {
 .input,
 button {
   display: block;
-  width: 95%!important;
-  margin: auto!important;
+  width: 95% !important;
+  margin: auto !important;
   outline: none;
   background: rgba(255, 255, 255, 0.3);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 8px 0 32px 0 rgba(0, 0, 0, 0.37);
-  font-size: 20px!important;
+  font-size: 20px !important;
   padding: 3px 15px;
   font-family: sans-serif;
-  font-weight: 700!important;
-  border-radius: 20px!important;
+  font-weight: 700 !important;
+  border-radius: 20px !important;
   color: white;
 }
-.input:hover{
+
+.input:hover {
   border-color: aqua;
   color: aqua;
 }
@@ -61,10 +62,11 @@ label {
 button {
   background-color: white;
   color: black;
-  margin: 25px auto!important;
+  margin: 25px auto !important;
   text-align: center;
 }
-button:hover{
+
+button:hover {
   background: none;
   color: #fff;
 }

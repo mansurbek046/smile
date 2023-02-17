@@ -55,6 +55,7 @@ window.setTimeout(function() {
 }, 1000);
 var voices = [];
 let voice = false;
+
 function getVoices() {
   voices = synth.getVoices();
 };
@@ -177,8 +178,8 @@ const start = () => {
   }
   //get random word object
   word = words[Math.round(Math.random() * (words.length - 1))];
-  plus_two_words = word[0]+word[1];
-  if (memo.indexOf(plus_two_words)!=-1) {
+  plus_two_words = word[0] + word[1];
+  if (memo.indexOf(plus_two_words) != -1) {
     start();
   } else {
     let p = document.querySelector(".word");
@@ -218,8 +219,8 @@ const start = () => {
     //listened answer word check
     recognition.addEventListener("result", e => {
       const transcript = Array.from(e.results)
-      .map(result => result[0])
-      .map(result => result.transcript);
+        .map(result => result[0])
+        .map(result => result.transcript);
       if (transcript == word[side2].toLowerCase()) {
         input.value = "";
         start();

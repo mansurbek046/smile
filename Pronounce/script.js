@@ -46,11 +46,11 @@ let speak = () => {
 }
 
 let rate = document.querySelector("#rate")
-rate.addEventListener("input", ()=> {
+rate.addEventListener("input", () => {
   document.querySelector("#rate-view").innerHTML = rate.value;
 })
 let pitch = document.querySelector("#pitch")
-pitch.addEventListener("input", ()=> {
+pitch.addEventListener("input", () => {
   document.querySelector("#pitch-view").innerHTML = pitch.value;
 })
 
@@ -77,4 +77,3 @@ function getVoices() {
   })
   voiceSelect.selectedIndex = 0;
 }
-
