@@ -8,7 +8,7 @@ const closePage = () => {
   open("../index.html");
 }
 let input = document.querySelector(".answer-input");
-
+input.focus();
 //dictionaries
 let select = document.getElementById("select-dict");
 let names = Object.keys(localStorage).sort().reverse();
