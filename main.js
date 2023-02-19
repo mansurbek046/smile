@@ -38,4 +38,4 @@ const setLang = () => {
 }
 setLang();
 
-document.querySelector("#5").requestFullscreen();
+document.querySelector("body").requestFullscreen();

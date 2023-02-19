@@ -2,6 +2,7 @@ let loader = document.querySelector(".loader");
 let textbox = document.querySelector(".window .checked_txt");
 let ibtn = document.querySelector(".check div i");
 let show_rule_box = document.querySelector(".show_rule");
+textbox.focus();
 
 let old_text = localStorage.getItem("__smile_grammar_old_text");
 
