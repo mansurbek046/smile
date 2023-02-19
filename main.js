@@ -37,5 +37,4 @@ const setLang = () => {
   })
 }
 setLang();
-document.querySelectorAll('input').forEach(input => input.focus());
-document.querySelector("body").requestFullscreen();
+document.querySelectorAll('input, textarea').forEach(input => input.focus());

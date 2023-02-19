@@ -99,6 +99,7 @@ const controller = () => {
 
 const plus = () => {
   const first_word = document.querySelector(".first-word");
+  first_word.focus();
   first_word.setAttribute("placeholder", first_language[0]);
   first_word.value = "";
   const second_word = document.querySelector(".second-word");

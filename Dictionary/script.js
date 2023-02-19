@@ -1,7 +1,9 @@
 const root = document.querySelector(".root");
 const plus_btn = document.querySelector(".plus-btn");
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
-document.querySelector(".dict_name").setAttribute("placeholder", lang[25]);
+let dict_name = document.querySelector(".dict_name");
+dict_name.setAttribute("placeholder", lang[25]);
+dict_name.focus();
 
 const createDictItem = (text) => {
   let row = document.createElement("div");
