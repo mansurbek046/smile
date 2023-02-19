@@ -37,4 +37,4 @@ const setLang = () => {
   })
 }
 setLang();
-document.querySelectorAll('input, textarea').forEach(input => input.focus());
+document.querySelectorAll('textarea').forEach(txt => txt.focus());

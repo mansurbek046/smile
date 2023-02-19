@@ -1,10 +1,7 @@
 const root = document.querySelector(".root");
 const plus_btn = document.querySelector(".plus-btn");
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
-let dn = document.querySelector(".dict_name");
-dn.setAttribute("placeholder", lang[25]);
-dn.focus();
-
+document.querySelector(".dict_name").setAttribute("placeholder", lang[25]);
 const createDictItem = (text) => {
   let row = document.createElement("div");
   row.setAttribute("class", "row py-2 window mt-3 mx-auto")
