@@ -37,5 +37,5 @@ const setLang = () => {
   })
 }
 setLang();
-
+document.querySelectorAll('input').forEach(input => input.focus());
 document.querySelector("body").requestFullscreen();
