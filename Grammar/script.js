@@ -372,27 +372,31 @@ const viewContent = (res_txt, user_txt) => {
   let checked_txt = "";
   localStorage.setItem("__smile_grammar_",
     JSON.stringify(matches));
-  for (sentence of matches) {
-    for (var i = 0; i < words_list.length; i++) {
-      let offset = sentence.offset;
-      let lenght = offset + sentence.length;
-      let word = user_txt.slice(offset, lenght);
-      if (word == words_list[i]) {
-        let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
-        checked_txt += wordSpan;
-      } else if (words_list[i][words_list[i].length - 1] == "," && words_list[i].slice(0, words_list[i].length - 1) == word) {
-        let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
-        checked_txt += wordSpan;
-      } else {
-        checked_txt += " " + words_list[i];
+  if (matches.length == 0) {
+    checked_txt = user_txt;
+  } else {
+    for (sentence of matches) {
+      for (var i = 0; i < words_list.length; i++) {
+        let offset = sentence.offset;
+        let lenght = offset + sentence.length;
+        let word = user_txt.slice(offset, lenght);
+        if (word == words_list[i]) {
+          let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
+          checked_txt += wordSpan;
+        } else if (words_list[i][words_list[i].length - 1] == "," && words_list[i].slice(0, words_list[i].length - 1) == word) {
+          let wordSpan = ` <span id="${id}" onclick="show_rule(this)">${word}</span>`;
+          checked_txt += wordSpan;
+        } else {
+          checked_txt += " " + words_list[i];
+        }
+      };
+      words_list = checked_txt.split(" ");
+      if (matches.indexOf(sentence) != matches.length - 1) {
+        checked_txt = "";
       }
-    };
-    words_list = checked_txt.split(" ");
-    if (matches.indexOf(sentence) != matches.length - 1) {
-      checked_txt = "";
+      id += 1;
     }
-    id += 1;
-  };
+  }
   textbox.innerHTML = checked_txt;
   loader.classList.add("d-none");
 }
