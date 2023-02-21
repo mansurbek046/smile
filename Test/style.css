@@ -45,9 +45,6 @@ body {
   color: rgba(255, 255, 255, .8);
   padding: 5px;
   font-size: 25px;
-  position: sticky;
-  top: 0;
-  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -131,7 +128,6 @@ input {
   font-weight: 700 !important;
   border-radius: 20px !important;
   color: white;
-  text-align: center;
 }
 
 .question {

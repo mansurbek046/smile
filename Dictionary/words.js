@@ -128,9 +128,9 @@ const downWriter = (search) => {
   window.setTimeout(() => check_disable(), 1200);
 }
 
-
+let add_word_count=0;
 const upWriter = (word, word2) => {
-  let count = 0;
+  let add_word_count = 0;
   let firstWord = document.querySelector(".first-word");
   let secondWord = document.querySelector(".second-word");
   if (word != undefined && word2 != undefined) {
@@ -149,7 +149,6 @@ const upWriter = (word, word2) => {
 }
 
 const addWord = () => {
-  let count = 0;
   let firstWord = document.querySelector(".first-word");
   let secondWord = document.querySelector(".second-word");
   word = firstWord.value;
@@ -157,7 +156,7 @@ const addWord = () => {
   if (word != "" && word2 != "") {
     opened_dict.dict[word] = word2;
     localStorage.setItem(`__smile_${opened_dict_name}_dict`, JSON.stringify(opened_dict));
-    document.querySelector(".all").innerHTML = (count += 1)
+    document.querySelector(".all").innerHTML = (add_word_count += 1)
     firstWord.value = ""
     secondWord.value = ""
     writedCount = 0;
@@ -253,8 +252,14 @@ document.querySelector(".unite").addEventListener("click", () => {
 })
 
 let secondWord = document.querySelector(".second-word");
+let firstWord = document.querySelector(".first-word");
+firstWord.addEventListener("keypress", () => {
+  secondWord.focus();
+})
+
 secondWord.addEventListener("keypress", () => {
   document.querySelector(".all").innerHTML = 0;
+  firstWord.focus();
   addWord();
 })
 

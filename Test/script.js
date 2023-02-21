@@ -209,7 +209,6 @@ const start = () => {
     }
     //change word-view color
     p.style.backgroundColor = "white";
-    //note for know word
     note = word;
     another_side = word[side2];
     //listen answer word
@@ -235,6 +234,10 @@ const start = () => {
     input.removeAttribute("disabled");
     input.addEventListener("input",
       () => {
+        if (input.value.length == 1 && input.value == "?") {
+          input.value="";
+          getAnswer();
+        }
         let lessMark = JSON.stringify(another_side.toLowerCase().split(", ")) == JSON.stringify(input.value.toLowerCase().split(" "));
         if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
           //It was write for test
@@ -244,13 +247,15 @@ const start = () => {
           memo.push(plus_two_words);
           count += 1;
           document.querySelector(".word-count").innerHTML = count;
+          input.setAttribute('placeholder','');
           start();
         }
       })
   }
 }
+
 //know word
-btn.addEventListener("click", () => {
+const getAnswer = () => {
   let word = note[0];
   let word2 = note[1];
   notMemo[word] = word2;
@@ -261,7 +266,10 @@ btn.addEventListener("click", () => {
     },
     dict: notMemo
   }));
-  alert(`\n\n\t${word} - ${word2}\n\n`);
+  input.setAttribute("placeholder", another_side);
+}
+btn.addEventListener("click", () => {
+  getAnswer();
 });
 //first start
 start();
