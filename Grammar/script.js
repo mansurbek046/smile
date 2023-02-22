@@ -411,6 +411,7 @@ window.setInterval(function() {
 }, 300);
 
 const show_rule = (e) => {
+  e.parentNode.blur();
   let matches = JSON.parse(localStorage.getItem("__smile_grammar_"));
   let sentence = matches[e.id];
   const {

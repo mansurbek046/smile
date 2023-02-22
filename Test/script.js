@@ -234,12 +234,12 @@ const start = () => {
     input.removeAttribute("disabled");
     input.addEventListener("input",
       () => {
-        if (input.value.length == 1 && input.value == "?") {
+        if (input.value.trim().length == 1 && input.value.trim() == "?") {
           input.value="";
           getAnswer();
         }
         let lessMark = JSON.stringify(another_side.toLowerCase().split(", ")) == JSON.stringify(input.value.toLowerCase().split(" "));
-        if (input.value.toLowerCase() === another_side.toLowerCase() || lessMark) {
+        if (input.value.trim().toLowerCase() === another_side.toLowerCase() || lessMark) {
           //It was write for test
           //speaktest(input.value);
           input.value = "";
