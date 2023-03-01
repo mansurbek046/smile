@@ -2,11 +2,7 @@
 const synth = window.speechSynthesis;
 //interface language
 const lang = JSON.parse(localStorage.getItem("__smile_language"));
-//page close
-const closePage = () => {
-  close(document);
-  open("../index.html");
-}
+
 let input = document.querySelector(".answer-input");
 
 //dictionaries
@@ -269,6 +265,11 @@ const getAnswer = () => {
   input.setAttribute("placeholder", another_side);
 }
 btn.addEventListener("click", () => {
+  input.value='';
+  getAnswer();
+});
+input.addEventListener('keypress',()=>{
+  input.value='';
   getAnswer();
 });
 //first start

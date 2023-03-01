@@ -97,7 +97,10 @@ const controller = () => {
   search();
 }
 
+let add_word_count = 0;
+
 const plus = () => {
+  add_word_count = 0;
   const first_word = document.querySelector(".first-word");
   first_word.setAttribute("placeholder", first_language[0]);
   first_word.value = "";
@@ -128,9 +131,7 @@ const downWriter = (search) => {
   window.setTimeout(() => check_disable(), 1200);
 }
 
-let add_word_count=0;
 const upWriter = (word, word2) => {
-  let add_word_count = 0;
   let firstWord = document.querySelector(".first-word");
   let secondWord = document.querySelector(".second-word");
   if (word != undefined && word2 != undefined) {
@@ -187,7 +188,12 @@ const search = () => {
   let search_input = document.querySelector(".search");
   search_input.placeholder = lang[9];
   search_input.addEventListener("input", () => {
-    downWriter(search_input.value);
+    if (search_input.value == "") {
+      writedCount = 0;
+      downWriter();
+    } else {
+      downWriter(search_input.value);
+    }
   })
 }
 
@@ -262,9 +268,3 @@ secondWord.addEventListener("keypress", () => {
   firstWord.focus();
   addWord();
 })
-
-
-const closePage = () => {
-  close(document);
-  open("./index.html");
-}

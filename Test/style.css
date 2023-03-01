@@ -101,12 +101,15 @@ select:hover {
 }
 
 .word-box .word {
+  background: linear-gradient(360deg, green, green, green, yellow, orange, crimson, blue, blue, blue);
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
   margin: 0 !important;
   text-align: center;
   font-weight: bold !important;
   background-clip: text !important;
   -webkit-background-clip: text !important;
-  color: white;
+  color: transparent;
   width: 95% !important;
   max-height: 30vh !important;
   font-weight: 900 !important;
@@ -125,7 +128,7 @@ input {
   font-size: 18px !important;
   padding: 3px 15px;
   font-family: sans-serif;
-  font-weight: 700 !important;
+  font-weight: 200 !important;
   border-radius: 20px !important;
   color: white;
 }
@@ -176,4 +179,9 @@ a {
 
 a:active {
   color: aqua;
+}
+
+input::placeholder {
+  color: white;
+  opacity: .6;
 }

@@ -494,9 +494,3 @@ document.querySelector(".replace").addEventListener("click", () => {
   text1.value = text2.innerHTML;
   text2.innerHTML = "";
 });
-
-
-const closePage = () => {
-  close(document);
-  open("../index.html");
-}
