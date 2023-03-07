@@ -143,24 +143,41 @@ select.addEventListener("change", () => {
 //check sides
 let leftside = true;
 let rightside = true;
-const left = (btn) => {
-  if (leftside) {
-    leftside = false;
-    btn.classList.remove("on");
-  } else {
-    leftside = true;
-    btn.classList.add("on");
-  }
-}
-const right = (btn) => {
-  if (rightside) {
-    rightside = false;
-    btn.classList.remove("on");
-  } else {
+
+let switchBtn = document.querySelector(".switch_side");
+let i = document.querySelector(".switch_side i");
+switchBtn.addEventListener("click", ()=> {
+  if (leftside && !rightside) {
     rightside = true;
-    btn.classList.add("on");
+    i.setAttribute("class", "fa-solid fa-align-center");
+  } else if (leftside && rightside) {
+    leftside = false;
+    i.setAttribute("class", "fa-solid fa-align-right");
+  } else if (!leftside && rightside) {
+    leftside = true;
+    rightside = false;
+    i.setAttribute("class", "fa-solid fa-align-left");
   }
-}
+});
+
+//choice mode
+let choice = document.querySelector(".list");
+let choice_mode = false;
+choice.addEventListener("click", ()=> {
+  if (choice_mode) {
+    document.querySelector(".answer-box").classList.remove("d-none");
+    document.querySelector(".answers-list").classList.add("d-none");
+    choice.classList.remove("on");
+    choice_mode = false;
+    start();
+  } else {
+    document.querySelector(".answers-list").classList.remove("d-none");
+    document.querySelector(".answer-box").classList.add("d-none");
+    choice.classList.add("on");
+    choice_mode = true;
+    start();
+  }
+})
 
 let notMemo = {};
 let memo = [];
@@ -199,6 +216,15 @@ const start = () => {
     }
     //word-view
     p.innerHTML = word[side];
+    whichBtn = Math.round(Math.random() * 2);
+    document.querySelectorAll(".answers-list input").forEach((item)=> {
+      item.style.backgroundColor = "rgba(255, 255, 255, 0.18)";
+      item.value = words[Math.round(Math.random() * (words.length - 1))][side2];
+      if (item.id == whichBtn) {
+        item.value = word[side2];
+      }
+      item.setAttribute("onclick", "check_answer(this)");
+    })
     //speak word
     if (speak) {
       speak_word(word[side]);
@@ -214,8 +240,8 @@ const start = () => {
     //listened answer word check
     recognition.addEventListener("result", e => {
       const transcript = Array.from(e.results)
-        .map(result => result[0])
-        .map(result => result.transcript);
+      .map(result => result[0])
+      .map(result => result.transcript);
       if (transcript == word[side2].toLowerCase()) {
         input.value = "";
         start();
@@ -231,7 +257,7 @@ const start = () => {
     input.addEventListener("input",
       () => {
         if (input.value.trim().length == 1 && input.value.trim() == "?") {
-          input.value="";
+          input.value = "";
           getAnswer();
         }
         let lessMark = JSON.stringify(another_side.toLowerCase().split(", ")) == JSON.stringify(input.value.toLowerCase().split(" "));
@@ -243,10 +269,24 @@ const start = () => {
           memo.push(plus_two_words);
           count += 1;
           document.querySelector(".word-count").innerHTML = count;
-          input.setAttribute('placeholder','');
+          input.setAttribute('placeholder', '');
           start();
         }
       })
+  }
+}
+
+const check_answer = (item)=> {
+  let value = item.value;
+  if (value.trim().toLowerCase() == another_side.toLowerCase()) {
+    memo.push(plus_two_words);
+    item.style.backgroundColor = "limegreen";
+    count += 1;
+    document.querySelector(".word-count").innerHTML = count;
+    setTimeout(()=>start(), 100)
+  } else {
+    item.style.backgroundColor = "crimson";
+    getAnswer();
   }
 }
 
@@ -255,21 +295,23 @@ const getAnswer = () => {
   let word = note[0];
   let word2 = note[1];
   notMemo[word] = word2;
-  localStorage.setItem("__smile_notMemo_dict", JSON.stringify({
-    lang: {
-      first: "_/_",
-      second: "_/_"
-    },
-    dict: notMemo
-  }));
-  input.setAttribute("placeholder", another_side);
+  localStorage.setItem("__smile_notMemo_dict",
+    JSON.stringify({
+      lang: {
+        first: "_/_",
+        second: "_/_"
+      },
+      dict: notMemo
+    }));
+  input.setAttribute("placeholder",
+    another_side);
 }
 btn.addEventListener("click", () => {
-  input.value='';
+  input.value = '';
   getAnswer();
 });
-input.addEventListener('keypress',()=>{
-  input.value='';
+input.addEventListener('keypress', ()=> {
+  input.value = '';
   getAnswer();
 });
 //first start

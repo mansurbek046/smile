@@ -34,7 +34,7 @@ body {
   justify-content: center;
   padding: 10px !important;
   padding-bottom: 60px;
-  height: 79vh;
+  height: 79vh!important;
 }
 
 .settings-navbar {
@@ -42,9 +42,6 @@ body {
   color: rgba(255, 255, 255, 1);
   padding: 5px;
   font-size: 25px;
-  position: sticky;
-  top: 0;
-  z-index: 3;
   display: flex;
   justify-content: space-between;
   align-items: center;
