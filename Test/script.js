@@ -21,8 +21,10 @@ for (let name of names) {
 //speech controll btns
 const speakBtn = document.getElementById("speaking");
 const listenBtn = document.getElementById("listening");
+const slashWordBtn = document.getElementById("slash-word");
 let listen = false;
 let speak = false;
+let slashWord = false;
 let opened_dict;
 let dict;
 let first_language;
@@ -114,11 +116,37 @@ speakBtn.addEventListener("click", () => {
   if (!speak) {
     speakBtn.classList.add("on");
     speak = true;
+    slashWordBtn.style.opacity = "1";
   } else {
     speakBtn.classList.remove("on");
     speak = false;
+    if (slashWord) {
+      slashWordBtn.classList.remove("fa-eye-slash");
+      slashWordBtn.classList.add("fa-eye");
+      document.querySelector(".word").style.opacity = "1";
+      slashWord = false;
+      slashWordBtn.style.opacity = ".7";
+    }
   }
 })
+
+slashWordBtn.addEventListener("click", () => {
+  if (speak) {
+    if (!slashWord) {
+      slashWordBtn.classList.remove("fa-eye");
+      slashWordBtn.classList.add("fa-eye-slash");
+      document.querySelector(".word").style.opacity = "0";
+      slashWord = true;
+    } else {
+      slashWordBtn.classList.remove("fa-eye-slash");
+      slashWordBtn.classList.add("fa-eye");
+      document.querySelector(".word").style.opacity = "1";
+      slashWord = false;
+    }
+  }
+})
+
+
 //test containers
 let count = 0;
 let note;
@@ -146,7 +174,7 @@ let rightside = true;
 
 let switchBtn = document.querySelector(".switch_side");
 let i = document.querySelector(".switch_side i");
-switchBtn.addEventListener("click", ()=> {
+switchBtn.addEventListener("click", () => {
   if (leftside && !rightside) {
     rightside = true;
     i.setAttribute("class", "fa-solid fa-align-center");
@@ -163,7 +191,7 @@ switchBtn.addEventListener("click", ()=> {
 //choice mode
 let choice = document.querySelector(".list");
 let choice_mode = false;
-choice.addEventListener("click", ()=> {
+choice.addEventListener("click", () => {
   if (choice_mode) {
     document.querySelector(".answer-box").classList.remove("d-none");
     document.querySelector(".answers-list").classList.add("d-none");
@@ -217,11 +245,11 @@ const start = () => {
     //word-view
     p.innerHTML = word[side];
     whichBtn = Math.round(Math.random() * 2);
-    document.querySelectorAll(".answers-list input").forEach((item)=> {
+    document.querySelectorAll(".answers-list div").forEach((item) => {
       item.style.backgroundColor = "rgba(255, 255, 255, 0.18)";
-      item.value = words[Math.round(Math.random() * (words.length - 1))][side2];
+      item.innerHTML = words[Math.round(Math.random() * (words.length - 1))][side2];
       if (item.id == whichBtn) {
-        item.value = word[side2];
+        item.innerHTML = word[side2];
       }
       item.setAttribute("onclick", "check_answer(this)");
     })
@@ -276,14 +304,14 @@ const start = () => {
   }
 }
 
-const check_answer = (item)=> {
-  let value = item.value;
+const check_answer = (item) => {
+  let value = item.textContent;
   if (value.trim().toLowerCase() == another_side.toLowerCase()) {
     memo.push(plus_two_words);
     item.style.backgroundColor = "limegreen";
     count += 1;
     document.querySelector(".word-count").innerHTML = count;
-    setTimeout(()=>start(), 100)
+    setTimeout(() => start(), 100)
   } else {
     item.style.backgroundColor = "crimson";
     getAnswer();
@@ -310,9 +338,22 @@ btn.addEventListener("click", () => {
   input.value = '';
   getAnswer();
 });
-input.addEventListener('keypress', ()=> {
+input.addEventListener('keypress', () => {
   input.value = '';
   getAnswer();
 });
 //first start
 start();
+
+let d = true;
+input.addEventListener("dblclick", ()=> {
+  if (d) {
+    document.querySelector('.settings-navbar').style.display = "none";
+    document.querySelector('#panel').classList.add("d-none");
+    d = false;
+  } else {
+    document.querySelector('.settings-navbar').style.display = "flex";
+    document.querySelector('#panel').classList.remove("d-none");
+    d = true;
+  }
+})
