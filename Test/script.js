@@ -338,10 +338,10 @@ btn.addEventListener("click", () => {
   input.value = '';
   getAnswer();
 });
-input.addEventListener('keypress', () => {
+/*input.addEventListener('keypress', () => {
   input.value = '';
   getAnswer();
-});
+});*/
 //first start
 start();
 
